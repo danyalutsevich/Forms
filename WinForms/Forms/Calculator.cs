@@ -23,10 +23,6 @@ namespace WinForms.Forms
             BlockOperator = true;
         }
 
-        private void Calculator_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void buttonEquals_Click(object sender, EventArgs e)
         {

@@ -40,10 +40,10 @@
             this.buttonPlusMinus = new System.Windows.Forms.Button();
             this.buttonDot = new System.Windows.Forms.Button();
             this.buttonEquals = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.buttonOne = new System.Windows.Forms.Button();
+            this.buttonTwo = new System.Windows.Forms.Button();
+            this.buttonThree = new System.Windows.Forms.Button();
+            this.buttonZero = new System.Windows.Forms.Button();
             this.buttonMultiply = new System.Windows.Forms.Button();
             this.buttonBackSpace = new System.Windows.Forms.Button();
             this.buttonCE = new System.Windows.Forms.Button();
@@ -208,57 +208,57 @@
             this.buttonEquals.UseVisualStyleBackColor = false;
             this.buttonEquals.Click += new System.EventHandler(this.buttonEquals_Click);
             // 
-            // button1
+            // buttonOne
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Monument Extended Ultrabold", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(12, 357);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 75);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "1";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.buttonDigit_Click);
+            this.buttonOne.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonOne.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOne.Font = new System.Drawing.Font("Monument Extended Ultrabold", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonOne.Location = new System.Drawing.Point(12, 357);
+            this.buttonOne.Name = "buttonOne";
+            this.buttonOne.Size = new System.Drawing.Size(75, 75);
+            this.buttonOne.TabIndex = 0;
+            this.buttonOne.Text = "1";
+            this.buttonOne.UseVisualStyleBackColor = false;
+            this.buttonOne.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
-            // button2
+            // buttonTwo
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Monument Extended Ultrabold", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(93, 357);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 75);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "2";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.buttonDigit_Click);
+            this.buttonTwo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonTwo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonTwo.Font = new System.Drawing.Font("Monument Extended Ultrabold", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonTwo.Location = new System.Drawing.Point(93, 357);
+            this.buttonTwo.Name = "buttonTwo";
+            this.buttonTwo.Size = new System.Drawing.Size(75, 75);
+            this.buttonTwo.TabIndex = 0;
+            this.buttonTwo.Text = "2";
+            this.buttonTwo.UseVisualStyleBackColor = false;
+            this.buttonTwo.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
-            // button3
+            // buttonThree
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Monument Extended Ultrabold", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button3.Location = new System.Drawing.Point(174, 357);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 75);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "3";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.buttonDigit_Click);
+            this.buttonThree.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonThree.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonThree.Font = new System.Drawing.Font("Monument Extended Ultrabold", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonThree.Location = new System.Drawing.Point(174, 357);
+            this.buttonThree.Name = "buttonThree";
+            this.buttonThree.Size = new System.Drawing.Size(75, 75);
+            this.buttonThree.TabIndex = 0;
+            this.buttonThree.Text = "3";
+            this.buttonThree.UseVisualStyleBackColor = false;
+            this.buttonThree.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
-            // button4
+            // buttonZero
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Monument Extended Ultrabold", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button4.Location = new System.Drawing.Point(93, 438);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 75);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "0";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.buttonDigit_Click);
+            this.buttonZero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonZero.Font = new System.Drawing.Font("Monument Extended Ultrabold", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonZero.Location = new System.Drawing.Point(93, 438);
+            this.buttonZero.Name = "buttonZero";
+            this.buttonZero.Size = new System.Drawing.Size(75, 75);
+            this.buttonZero.TabIndex = 0;
+            this.buttonZero.Text = "0";
+            this.buttonZero.UseVisualStyleBackColor = false;
+            this.buttonZero.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
             // buttonMultiply
             // 
@@ -346,12 +346,12 @@
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.buttonEquals);
             this.Controls.Add(this.buttonDot);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.buttonZero);
             this.Controls.Add(this.buttonPlusMinus);
             this.Controls.Add(this.buttonPlus);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonThree);
+            this.Controls.Add(this.buttonTwo);
+            this.Controls.Add(this.buttonOne);
             this.Controls.Add(this.buttonMinus);
             this.Controls.Add(this.buttonSix);
             this.Controls.Add(this.buttonFive);
@@ -388,10 +388,10 @@
         private System.Windows.Forms.Button buttonPlusMinus;
         private System.Windows.Forms.Button buttonDot;
         private System.Windows.Forms.Button buttonEquals;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonOne;
+        private System.Windows.Forms.Button buttonTwo;
+        private System.Windows.Forms.Button buttonThree;
+        private System.Windows.Forms.Button buttonZero;
         private System.Windows.Forms.Button buttonMultiply;
         private System.Windows.Forms.Button buttonBackSpace;
         private System.Windows.Forms.Button buttonCE;
