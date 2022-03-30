@@ -31,21 +31,25 @@
             this.buttonSeven = new System.Windows.Forms.Button();
             this.buttonEight = new System.Windows.Forms.Button();
             this.buttonNine = new System.Windows.Forms.Button();
-            this.buttonMultiply = new System.Windows.Forms.Button();
+            this.buttonDevide = new System.Windows.Forms.Button();
             this.buttonFour = new System.Windows.Forms.Button();
             this.buttonFive = new System.Windows.Forms.Button();
             this.buttonSix = new System.Windows.Forms.Button();
-            this.buttonDevide = new System.Windows.Forms.Button();
-            this.buttonPlus = new System.Windows.Forms.Button();
             this.buttonMinus = new System.Windows.Forms.Button();
+            this.buttonPlus = new System.Windows.Forms.Button();
+            this.buttonPlusMinus = new System.Windows.Forms.Button();
             this.buttonDot = new System.Windows.Forms.Button();
             this.buttonEquals = new System.Windows.Forms.Button();
-            this.richTextBox = new System.Windows.Forms.RichTextBox();
-            this.History = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.buttonMultiply = new System.Windows.Forms.Button();
+            this.buttonBackSpace = new System.Windows.Forms.Button();
+            this.buttonCE = new System.Windows.Forms.Button();
+            this.buttonClear = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.TextBox();
+            this.History = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonSeven
@@ -87,18 +91,18 @@
             this.buttonNine.UseVisualStyleBackColor = false;
             this.buttonNine.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
-            // buttonMultiply
+            // buttonDevide
             // 
-            this.buttonMultiply.BackColor = System.Drawing.Color.Gray;
-            this.buttonMultiply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonMultiply.Font = new System.Drawing.Font("Monument Extended Ultrabold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.buttonMultiply.Location = new System.Drawing.Point(256, 197);
-            this.buttonMultiply.Name = "buttonMultiply";
-            this.buttonMultiply.Size = new System.Drawing.Size(75, 75);
-            this.buttonMultiply.TabIndex = 0;
-            this.buttonMultiply.Text = "x";
-            this.buttonMultiply.UseVisualStyleBackColor = false;
-            this.buttonMultiply.Click += new System.EventHandler(this.buttonSign_Click);
+            this.buttonDevide.BackColor = System.Drawing.Color.Gray;
+            this.buttonDevide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDevide.Font = new System.Drawing.Font("Monument Extended Ultrabold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonDevide.Location = new System.Drawing.Point(256, 197);
+            this.buttonDevide.Name = "buttonDevide";
+            this.buttonDevide.Size = new System.Drawing.Size(75, 75);
+            this.buttonDevide.TabIndex = 0;
+            this.buttonDevide.Text = "÷";
+            this.buttonDevide.UseVisualStyleBackColor = false;
+            this.buttonDevide.Click += new System.EventHandler(this.buttonSign_Click);
             // 
             // buttonFour
             // 
@@ -131,7 +135,7 @@
             this.buttonSix.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.buttonSix.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSix.Font = new System.Drawing.Font("Monument Extended Ultrabold", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.buttonSix.Location = new System.Drawing.Point(174, 276);
+            this.buttonSix.Location = new System.Drawing.Point(174, 278);
             this.buttonSix.Name = "buttonSix";
             this.buttonSix.Size = new System.Drawing.Size(75, 75);
             this.buttonSix.TabIndex = 0;
@@ -139,18 +143,18 @@
             this.buttonSix.UseVisualStyleBackColor = false;
             this.buttonSix.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
-            // buttonDevide
+            // buttonMinus
             // 
-            this.buttonDevide.BackColor = System.Drawing.Color.Gray;
-            this.buttonDevide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDevide.Font = new System.Drawing.Font("Monument Extended Ultrabold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.buttonDevide.Location = new System.Drawing.Point(256, 276);
-            this.buttonDevide.Name = "buttonDevide";
-            this.buttonDevide.Size = new System.Drawing.Size(75, 75);
-            this.buttonDevide.TabIndex = 0;
-            this.buttonDevide.Text = "÷";
-            this.buttonDevide.UseVisualStyleBackColor = false;
-            this.buttonDevide.Click += new System.EventHandler(this.buttonSign_Click);
+            this.buttonMinus.BackColor = System.Drawing.Color.Gray;
+            this.buttonMinus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonMinus.Font = new System.Drawing.Font("Monument Extended Ultrabold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonMinus.Location = new System.Drawing.Point(255, 278);
+            this.buttonMinus.Name = "buttonMinus";
+            this.buttonMinus.Size = new System.Drawing.Size(75, 75);
+            this.buttonMinus.TabIndex = 0;
+            this.buttonMinus.Text = "-";
+            this.buttonMinus.UseVisualStyleBackColor = false;
+            this.buttonMinus.Click += new System.EventHandler(this.buttonSign_Click);
             // 
             // buttonPlus
             // 
@@ -165,29 +169,29 @@
             this.buttonPlus.UseVisualStyleBackColor = false;
             this.buttonPlus.Click += new System.EventHandler(this.buttonSign_Click);
             // 
-            // buttonMinus
+            // buttonPlusMinus
             // 
-            this.buttonMinus.BackColor = System.Drawing.Color.Gray;
-            this.buttonMinus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonMinus.Font = new System.Drawing.Font("Monument Extended Ultrabold", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.buttonMinus.Location = new System.Drawing.Point(12, 438);
-            this.buttonMinus.Name = "buttonMinus";
-            this.buttonMinus.Size = new System.Drawing.Size(75, 75);
-            this.buttonMinus.TabIndex = 0;
-            this.buttonMinus.Text = "-";
-            this.buttonMinus.UseVisualStyleBackColor = false;
-            this.buttonMinus.Click += new System.EventHandler(this.buttonSign_Click);
+            this.buttonPlusMinus.BackColor = System.Drawing.Color.Gray;
+            this.buttonPlusMinus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPlusMinus.Font = new System.Drawing.Font("Monument Extended Ultrabold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonPlusMinus.Location = new System.Drawing.Point(12, 438);
+            this.buttonPlusMinus.Name = "buttonPlusMinus";
+            this.buttonPlusMinus.Size = new System.Drawing.Size(75, 75);
+            this.buttonPlusMinus.TabIndex = 0;
+            this.buttonPlusMinus.Text = "+/-";
+            this.buttonPlusMinus.UseVisualStyleBackColor = false;
+            this.buttonPlusMinus.Click += new System.EventHandler(this.buttonSign_Click);
             // 
             // buttonDot
             // 
             this.buttonDot.BackColor = System.Drawing.Color.Gray;
             this.buttonDot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDot.Font = new System.Drawing.Font("Monument Extended Ultrabold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonDot.Font = new System.Drawing.Font("Monument Extended Ultrabold", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.buttonDot.Location = new System.Drawing.Point(174, 438);
             this.buttonDot.Name = "buttonDot";
             this.buttonDot.Size = new System.Drawing.Size(75, 75);
             this.buttonDot.TabIndex = 0;
-            this.buttonDot.Text = "+/-";
+            this.buttonDot.Text = ".";
             this.buttonDot.UseVisualStyleBackColor = false;
             this.buttonDot.Click += new System.EventHandler(this.buttonSign_Click);
             // 
@@ -203,28 +207,6 @@
             this.buttonEquals.Text = "=";
             this.buttonEquals.UseVisualStyleBackColor = false;
             this.buttonEquals.Click += new System.EventHandler(this.buttonEquals_Click);
-            // 
-            // richTextBox
-            // 
-            this.richTextBox.BackColor = System.Drawing.Color.Gray;
-            this.richTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox.Font = new System.Drawing.Font("Monument Extended Ultrabold", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.richTextBox.Location = new System.Drawing.Point(12, 93);
-            this.richTextBox.Name = "richTextBox";
-            this.richTextBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.richTextBox.Size = new System.Drawing.Size(319, 96);
-            this.richTextBox.TabIndex = 2;
-            this.richTextBox.Text = "0";
-            // 
-            // History
-            // 
-            this.History.AutoSize = true;
-            this.History.BackColor = System.Drawing.Color.DimGray;
-            this.History.Font = new System.Drawing.Font("Monument Extended Ultrabold", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.History.Location = new System.Drawing.Point(184, 49);
-            this.History.Name = "History";
-            this.History.Size = new System.Drawing.Size(0, 41);
-            this.History.TabIndex = 3;
             // 
             // button1
             // 
@@ -278,6 +260,82 @@
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
+            // buttonMultiply
+            // 
+            this.buttonMultiply.BackColor = System.Drawing.Color.Gray;
+            this.buttonMultiply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonMultiply.Font = new System.Drawing.Font("Monument Extended Ultrabold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonMultiply.Location = new System.Drawing.Point(255, 116);
+            this.buttonMultiply.Name = "buttonMultiply";
+            this.buttonMultiply.Size = new System.Drawing.Size(75, 75);
+            this.buttonMultiply.TabIndex = 0;
+            this.buttonMultiply.Text = "x";
+            this.buttonMultiply.UseVisualStyleBackColor = false;
+            this.buttonMultiply.Click += new System.EventHandler(this.buttonSign_Click);
+            // 
+            // buttonBackSpace
+            // 
+            this.buttonBackSpace.BackColor = System.Drawing.Color.Gray;
+            this.buttonBackSpace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonBackSpace.Font = new System.Drawing.Font("Inter Black", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonBackSpace.Location = new System.Drawing.Point(174, 116);
+            this.buttonBackSpace.Name = "buttonBackSpace";
+            this.buttonBackSpace.Size = new System.Drawing.Size(75, 75);
+            this.buttonBackSpace.TabIndex = 0;
+            this.buttonBackSpace.Text = "⌫";
+            this.buttonBackSpace.UseVisualStyleBackColor = false;
+            this.buttonBackSpace.Click += new System.EventHandler(this.buttonBackSpace_Click);
+            // 
+            // buttonCE
+            // 
+            this.buttonCE.BackColor = System.Drawing.Color.Gray;
+            this.buttonCE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCE.Font = new System.Drawing.Font("Monument Extended Ultrabold", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonCE.Location = new System.Drawing.Point(93, 116);
+            this.buttonCE.Name = "buttonCE";
+            this.buttonCE.Size = new System.Drawing.Size(75, 75);
+            this.buttonCE.TabIndex = 0;
+            this.buttonCE.Text = "CE";
+            this.buttonCE.UseVisualStyleBackColor = false;
+            this.buttonCE.Click += new System.EventHandler(this.buttonCE_Click);
+            // 
+            // buttonClear
+            // 
+            this.buttonClear.BackColor = System.Drawing.Color.Gray;
+            this.buttonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClear.Font = new System.Drawing.Font("Monument Extended Ultrabold", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonClear.Location = new System.Drawing.Point(12, 116);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(75, 75);
+            this.buttonClear.TabIndex = 0;
+            this.buttonClear.Text = "C";
+            this.buttonClear.UseVisualStyleBackColor = false;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.Color.DimGray;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Font = new System.Drawing.Font("Monument Extended Ultrabold", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.richTextBox1.Location = new System.Drawing.Point(12, 55);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(318, 48);
+            this.richTextBox1.TabIndex = 6;
+            this.richTextBox1.Text = "0";
+            this.richTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // History
+            // 
+            this.History.BackColor = System.Drawing.Color.DimGray;
+            this.History.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.History.Font = new System.Drawing.Font("Monument Extended Ultrabold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.History.Location = new System.Drawing.Point(12, 26);
+            this.History.Name = "History";
+            this.History.Size = new System.Drawing.Size(318, 32);
+            this.History.TabIndex = 7;
+            this.History.Text = "0";
+            this.History.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -285,20 +343,24 @@
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(343, 522);
             this.Controls.Add(this.History);
-            this.Controls.Add(this.richTextBox);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.buttonEquals);
             this.Controls.Add(this.buttonDot);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.buttonMinus);
+            this.Controls.Add(this.buttonPlusMinus);
             this.Controls.Add(this.buttonPlus);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.buttonDevide);
+            this.Controls.Add(this.buttonMinus);
             this.Controls.Add(this.buttonSix);
             this.Controls.Add(this.buttonFive);
             this.Controls.Add(this.buttonFour);
+            this.Controls.Add(this.buttonClear);
+            this.Controls.Add(this.buttonCE);
+            this.Controls.Add(this.buttonBackSpace);
             this.Controls.Add(this.buttonMultiply);
+            this.Controls.Add(this.buttonDevide);
             this.Controls.Add(this.buttonNine);
             this.Controls.Add(this.buttonEight);
             this.Controls.Add(this.buttonSeven);
@@ -317,20 +379,24 @@
         private System.Windows.Forms.Button buttonSeven;
         private System.Windows.Forms.Button buttonEight;
         private System.Windows.Forms.Button buttonNine;
-        private System.Windows.Forms.Button buttonMultiply;
+        private System.Windows.Forms.Button buttonDevide;
         private System.Windows.Forms.Button buttonFour;
         private System.Windows.Forms.Button buttonFive;
         private System.Windows.Forms.Button buttonSix;
-        private System.Windows.Forms.Button buttonDevide;
-        private System.Windows.Forms.Button buttonPlus;
         private System.Windows.Forms.Button buttonMinus;
+        private System.Windows.Forms.Button buttonPlus;
+        private System.Windows.Forms.Button buttonPlusMinus;
         private System.Windows.Forms.Button buttonDot;
         private System.Windows.Forms.Button buttonEquals;
-        private System.Windows.Forms.RichTextBox richTextBox;
-        private System.Windows.Forms.Label History;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonMultiply;
+        private System.Windows.Forms.Button buttonBackSpace;
+        private System.Windows.Forms.Button buttonCE;
+        private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.TextBox richTextBox1;
+        private System.Windows.Forms.TextBox History;
     }
 }
