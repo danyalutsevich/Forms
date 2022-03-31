@@ -1,0 +1,6 @@
+2022-03-31 21:38:29.6191|FATAL|WinForms.Forms.Calculator|Undefined button
+2022-03-31 21:38:32.4985|FATAL|WinForms.Forms.Calculator|Undefined button
+2022-03-31 21:40:22.1466|FATAL|WinForms.Forms.Calculator|Undefined button button1
+2022-03-31 21:40:22.3085|FATAL|WinForms.Forms.Calculator|Undefined button button1
+2022-03-31 21:48:10.4098|FATAL|WinForms.Forms.Calculator|Sender error (System.Windows.Forms.Panel, BorderStyle: System.Windows.Forms.BorderStyle.None)
+2022-03-31 21:48:14.3222|FATAL|WinForms.Forms.Calculator|Undefined button (button1)

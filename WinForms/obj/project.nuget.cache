@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "HQe/ORViMEjExaJCdXdcyosyb7P4GKWfYfHMWSar1Zmlbu3j+Hu/suhTyOSUcymHrMw9z0SPjdtu1ipRbQAYNg==",
+  "dgSpecHash": "XBhdBNCIVNz7lh285yjDC9FwkpPTzIeM7s1WpqXFJwqXcPbWY8lT1bsKnFwn4RIh9m+S8ybXYIFhsXWdg4JmkQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\luche\\source\\repos\\C#\\WinForms\\WinForms\\WinForms.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\luche\\.nuget\\packages\\nlog\\4.7.15\\nlog.4.7.15.nupkg.sha512"
+  ],
   "logs": []
 }
