@@ -19,8 +19,6 @@ namespace WinForms.Forms
         Minus,
         Multiply,
         Divide,
-        Dot,
-        PlusMinus,
 
     }
 
@@ -43,27 +41,6 @@ namespace WinForms.Forms
 
         }
 
-        private void buttonBackSpace_Click(object sender, EventArgs e)
-        {
-            if (Display.Text.Length > 1)
-            {
-                Display.Text = Display.Text.Substring(0, (Display.Text.Length - 1));
-            }
-            else
-            {
-                Display.Text = "0";
-            }
-
-        }
-        private void buttonCE_Click(object sender, EventArgs e)
-        {
-            Display.Text = "0";
-        }
-        private void buttonClear_Click(object sender, EventArgs e)
-        {
-            Display.Text = "0";
-            Story.Text = "0";
-        }
         private void Calculator_Load(object sender, EventArgs e)
         {
             Story.Text = String.Empty;
@@ -80,6 +57,32 @@ namespace WinForms.Forms
             //}
 
         }
+        private void buttonBackSpace_Click(object sender, EventArgs e)
+        {
+            if (Display.Text.Length > 1)
+            {
+                Display.Text = Display.Text.Substring(0, (Display.Text.Length - 1));
+            }
+            else
+            {
+                Display.Text = "0";
+            }
+
+        }
+        private void buttonCE_Click(object sender, EventArgs e)
+        {
+            FirstArgument = 0;
+            SecondArgument = 0;
+            Display.Text = "0";
+        }
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            FirstArgument = 0;
+            SecondArgument = 0;
+            Display.Text = "0";
+            Story.Text = "";
+        }
+       
 
         private void Operations_Click(object sender, EventArgs e)
         {
@@ -94,26 +97,30 @@ namespace WinForms.Forms
             {
                 operations = Operations.Plus;
                 SignBlocker = false;
+                buttonEquals_Click(sender, e);
             }
             else if (button == buttonMinus)
             {
                 operations = Operations.Minus;
                 SignBlocker = false;
+                buttonEquals_Click(sender, e);
             }
             else if (button == buttonMultiply)
             {
                 operations = Operations.Multiply;
                 SignBlocker = false;
+                buttonEquals_Click(sender, e);
             }
             else if (button == buttonDivide)
             {
                 operations = Operations.Divide;
                 SignBlocker = false;
+                buttonEquals_Click(sender, e);
+                
             }
             else if (button == buttonDot)
             {
                 Display.Text += ".";
-                operations = Operations.Dot;
             }
             else if (button == buttonPlusMinus)
             {
@@ -128,8 +135,6 @@ namespace WinForms.Forms
                         Display.Text = "-" + Display.Text;
                     }
                 }
-
-                operations = Operations.PlusMinus;
             }
             else
             {
@@ -143,10 +148,7 @@ namespace WinForms.Forms
             }
 
             FirstArgument = Convert.ToDouble(Display.Text.Replace(".", ","));
-            if (operations == Operations.Plus|| operations == Operations.Minus|| operations == Operations.Divide|| operations == Operations.Multiply)
-            {
-                buttonEquals_Click(sender, e);
-            }
+          
         }
 
         private void buttonDigit_Click(object sender, EventArgs e)
@@ -205,7 +207,7 @@ namespace WinForms.Forms
                     result = FirstArgument / SecondArgument;
                     break;
             }
-
+            SignBlocker = false;
             Display.Text = result.ToString().Replace(".", ",");
 
         }
