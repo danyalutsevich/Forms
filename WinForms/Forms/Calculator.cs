@@ -15,10 +15,10 @@ namespace WinForms.Forms
     enum Operations
     {
         None,
-        Plus,
-        Minus,
-        Multiply,
-        Divide,
+        Plus='+',
+        Minus='-',
+        Multiply='*',
+        Divide='/',
 
     }
 
@@ -82,11 +82,36 @@ namespace WinForms.Forms
             Display.Text = "0";
             Story.Text = "";
         }
-       
+
 
         private void Operations_Click(object sender, EventArgs e)
         {
             var button = sender as Button;
+            if (!Story.Text.Contains("="))
+            {
+
+                if (Story.Text.Contains("+"))
+                {
+                    operations = Operations.Plus;
+                    buttonEquals_Click(sender, e);
+                }
+                else if (Story.Text.Contains("-"))
+                {
+                    operations = Operations.Minus;
+                    buttonEquals_Click(sender, e);
+                }
+                else if (Story.Text.Contains("÷"))
+                {
+                    operations = Operations.Divide;
+                    buttonEquals_Click(sender, e);
+                }
+                else if (Story.Text.Contains("x"))
+                {
+                    operations = Operations.Multiply;
+                    buttonEquals_Click(sender, e);
+                }
+            }
+
 
             if (button == null)
             {
@@ -97,26 +122,21 @@ namespace WinForms.Forms
             {
                 operations = Operations.Plus;
                 SignBlocker = false;
-                buttonEquals_Click(sender, e);
             }
             else if (button == buttonMinus)
             {
                 operations = Operations.Minus;
                 SignBlocker = false;
-                buttonEquals_Click(sender, e);
             }
             else if (button == buttonMultiply)
             {
                 operations = Operations.Multiply;
                 SignBlocker = false;
-                buttonEquals_Click(sender, e);
             }
             else if (button == buttonDivide)
             {
                 operations = Operations.Divide;
                 SignBlocker = false;
-                buttonEquals_Click(sender, e);
-                
             }
             else if (button == buttonDot)
             {
@@ -142,13 +162,15 @@ namespace WinForms.Forms
                 return;
             }
 
+
+
             if (!button.Text.Equals("+/-"))
             {
                 Story.Text = Display.Text + button.Text;
             }
 
             FirstArgument = Convert.ToDouble(Display.Text.Replace(".", ","));
-          
+
         }
 
         private void buttonDigit_Click(object sender, EventArgs e)
@@ -185,7 +207,7 @@ namespace WinForms.Forms
         {
 
             SecondArgument = Convert.ToDouble(Display.Text.Replace(".", ","));
-            Story.Text += $"{SecondArgument}=";
+            Story.Text = $"{FirstArgument}{(char)operations}{SecondArgument}=";
 
             double result = 0;
 
@@ -204,7 +226,14 @@ namespace WinForms.Forms
                     result = FirstArgument * SecondArgument;
                     break;
                 case Operations.Divide:
-                    result = FirstArgument / SecondArgument;
+                    if (SecondArgument != 0)
+                    {
+                        result = FirstArgument / SecondArgument;
+                    }
+                    else
+                    {
+                        result = double.NaN;
+                    }
                     break;
             }
             SignBlocker = false;
