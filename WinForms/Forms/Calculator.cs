@@ -15,10 +15,10 @@ namespace WinForms.Forms
     enum Operations
     {
         None,
-        Plus='+',
-        Minus='-',
-        Multiply='*',
-        Divide='/',
+        Plus = '+',
+        Minus = '-',
+        Multiply = '*',
+        Divide = '/',
 
     }
 
