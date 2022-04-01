@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Calculator));
             this.buttonSeven = new System.Windows.Forms.Button();
             this.buttonEight = new System.Windows.Forms.Button();
             this.buttonNine = new System.Windows.Forms.Button();
@@ -48,8 +49,8 @@
             this.buttonBackSpace = new System.Windows.Forms.Button();
             this.buttonCE = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.TextBox();
-            this.History = new System.Windows.Forms.TextBox();
+            this.Display = new System.Windows.Forms.TextBox();
+            this.Story = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonSeven
@@ -190,7 +191,7 @@
             this.buttonPlusMinus.TabIndex = 0;
             this.buttonPlusMinus.Text = "+/-";
             this.buttonPlusMinus.UseVisualStyleBackColor = false;
-            this.buttonPlusMinus.Click += new System.EventHandler(this.buttonSign_Click);
+            this.buttonPlusMinus.Click += new System.EventHandler(this.Operations_Click);
             // 
             // buttonDot
             // 
@@ -204,7 +205,7 @@
             this.buttonDot.TabIndex = 0;
             this.buttonDot.Text = ".";
             this.buttonDot.UseVisualStyleBackColor = false;
-            this.buttonDot.Click += new System.EventHandler(this.buttonSign_Click);
+            this.buttonDot.Click += new System.EventHandler(this.Operations_Click);
             // 
             // buttonEquals
             // 
@@ -332,31 +333,31 @@
             this.buttonClear.UseVisualStyleBackColor = false;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
-            // richTextBox1
+            // Display
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.DimGray;
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Font = new System.Drawing.Font("Monument Extended Ultrabold", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.richTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.richTextBox1.Location = new System.Drawing.Point(12, 55);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(318, 48);
-            this.richTextBox1.TabIndex = 6;
-            this.richTextBox1.Text = "0";
-            this.richTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Display.BackColor = System.Drawing.Color.DimGray;
+            this.Display.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Display.Font = new System.Drawing.Font("Monument Extended Ultrabold", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Display.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Display.Location = new System.Drawing.Point(12, 55);
+            this.Display.Name = "Display";
+            this.Display.Size = new System.Drawing.Size(318, 48);
+            this.Display.TabIndex = 6;
+            this.Display.Text = "0";
+            this.Display.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // History
+            // Story
             // 
-            this.History.BackColor = System.Drawing.Color.DimGray;
-            this.History.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.History.Font = new System.Drawing.Font("Monument Extended Ultrabold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.History.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.History.Location = new System.Drawing.Point(12, 26);
-            this.History.Name = "History";
-            this.History.Size = new System.Drawing.Size(318, 32);
-            this.History.TabIndex = 7;
-            this.History.Text = "0";
-            this.History.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Story.BackColor = System.Drawing.Color.DimGray;
+            this.Story.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Story.Font = new System.Drawing.Font("Monument Extended Ultrabold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Story.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Story.Location = new System.Drawing.Point(12, 26);
+            this.Story.Name = "Story";
+            this.Story.Size = new System.Drawing.Size(318, 32);
+            this.Story.TabIndex = 7;
+            this.Story.Text = "0";
+            this.Story.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Calculator
             // 
@@ -364,8 +365,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(343, 522);
-            this.Controls.Add(this.History);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.Story);
+            this.Controls.Add(this.Display);
             this.Controls.Add(this.buttonEquals);
             this.Controls.Add(this.buttonDot);
             this.Controls.Add(this.buttonZero);
@@ -386,6 +387,7 @@
             this.Controls.Add(this.buttonNine);
             this.Controls.Add(this.buttonEight);
             this.Controls.Add(this.buttonSeven);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Calculator";
             this.Text = "Calculator";
@@ -418,7 +420,7 @@
         private System.Windows.Forms.Button buttonBackSpace;
         private System.Windows.Forms.Button buttonCE;
         private System.Windows.Forms.Button buttonClear;
-        private System.Windows.Forms.TextBox richTextBox1;
-        private System.Windows.Forms.TextBox History;
+        private System.Windows.Forms.TextBox Display;
+        private System.Windows.Forms.TextBox Story;
     }
 }

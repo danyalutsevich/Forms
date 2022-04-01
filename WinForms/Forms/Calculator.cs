@@ -19,114 +19,133 @@ namespace WinForms.Forms
         Minus,
         Multiply,
         Divide,
+        Dot,
+        PlusMinus,
 
     }
 
     public partial class Calculator : Form
     {
-        public Calculator()
+        public double FirstArgument { get; set; }
+        public double SecondArgument { get; set; }
+        private bool SignBlocker { get; set; }
+        private Logger log { get; set; }
+        private Operations operations;
+
+        public Calculator(Logger logger)
         {
             InitializeComponent();
-        }
-        public static bool SignBlocker { get; set; }
-        public static Logger log { get; set; }
-        private static Operations operations;
-
-        static Calculator()
-        {
+            log = logger;
             operations = Operations.None;
-            log=LogManager.GetCurrentClassLogger();
             SignBlocker = true;
+            FirstArgument = 0;
+            SecondArgument = 0;
+
         }
 
+        private void buttonBackSpace_Click(object sender, EventArgs e)
+        {
+            if (Display.Text.Length > 1)
+            {
+                Display.Text = Display.Text.Substring(0, (Display.Text.Length - 1));
+            }
+            else
+            {
+                Display.Text = "0";
+            }
+
+        }
+        private void buttonCE_Click(object sender, EventArgs e)
+        {
+            Display.Text = "0";
+        }
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            Display.Text = "0";
+            Story.Text = "0";
+        }
         private void Calculator_Load(object sender, EventArgs e)
         {
+            Story.Text = String.Empty;
+
+            //foreach(var b in Controls)
+            //{
+            //    if(b is Button)
+            //    {
+            //        System.Drawing.Rectangle rect;
+            //        rect.Inflate(10, 10);
+            //        (b as Button).Bounds=;
+            //    }
+
+            //}
 
         }
 
         private void Operations_Click(object sender, EventArgs e)
         {
-
             var button = sender as Button;
+
             if (button == null)
             {
-                log.Fatal($"Sender error ({sender})");
+                log.Error($"Sender error ({sender})");
                 return;
             }
             else if (button == buttonPlus)
             {
                 operations = Operations.Plus;
+                SignBlocker = false;
             }
             else if (button == buttonMinus)
             {
                 operations = Operations.Minus;
+                SignBlocker = false;
             }
             else if (button == buttonMultiply)
             {
                 operations = Operations.Multiply;
+                SignBlocker = false;
             }
             else if (button == buttonDivide)
             {
                 operations = Operations.Divide;
+                SignBlocker = false;
+            }
+            else if (button == buttonDot)
+            {
+                Display.Text += ".";
+                operations = Operations.Dot;
+            }
+            else if (button == buttonPlusMinus)
+            {
+                if (!Display.Text.Equals("0"))
+                {
+                    if (Display.Text.StartsWith("-"))
+                    {
+                        Display.Text = Display.Text.Substring(1);
+                    }
+                    else
+                    {
+                        Display.Text = "-" + Display.Text;
+                    }
+                }
+
+                operations = Operations.PlusMinus;
             }
             else
             {
-                log.Fatal($"Undefined button ({button.Text})");
+                log.Error($"Undefined button ({button})");
                 return;
             }
 
-            if(operations == Operations.Plus)
+            if (!button.Text.Equals("+/-"))
             {
-                richTextBox1.Text += "+";
-            }
-            else if(operations == Operations.Minus)
-            {
-                richTextBox1.Text += "-";
-            }
-            else if(operations== Operations.Multiply)
-            {
-                richTextBox1.Text += "x";
-            }
-            else if(operations== Operations.Divide)
-            {
-                richTextBox1.Text += "-";
+                Story.Text = Display.Text + button.Text;
             }
 
-        }
-
-        private void buttonEquals_Click(object sender, EventArgs e)
-        {
-            var answer = new DataTable().Compute(richTextBox1.Text.Replace('x', '*').Replace('÷', '/'), null);
-            History.Text = richTextBox1.Text;
-            richTextBox1.Text = answer.ToString();
-        }
-
-        private void buttonSign_Click(object sender, EventArgs e)
-        {
-            var clicked = sender as Button;
-            if (clicked == null)
+            FirstArgument = Convert.ToDouble(Display.Text.Replace(".", ","));
+            if (operations == Operations.Plus|| operations == Operations.Minus|| operations == Operations.Divide|| operations == Operations.Multiply)
             {
-                return;
-            }
-
-            if (clicked.Text.Equals("+/-"))
-            {
-                if (richTextBox1.Text.StartsWith("-"))
-                {
-                    richTextBox1.Text = richTextBox1.Text.Substring(1);
-                }
-                else
-                {
-                    richTextBox1.Text = "-" + richTextBox1.Text;
-                }
-            }
-            else
-            {
-                if (!SignBlocker)
-                {
-                    richTextBox1.Text = richTextBox1.Text + clicked.Text;
-                    SignBlocker=true;
-                }
+                buttonEquals_Click(sender, e);
             }
         }
 
@@ -138,36 +157,57 @@ namespace WinForms.Forms
                 return;
             }
 
-            if (richTextBox1.Text.Equals("0"))
+            if (Display.Text.Equals("0"))
             {
-                richTextBox1.Text = "";
+                Display.Text = "";
             }
 
-            richTextBox1.Text += clicked.Text;
-            SignBlocker = false;
-        }
-
-        private void buttonBackSpace_Click(object sender, EventArgs e)
-        {
-            if (richTextBox1.Text.Length > 1)
+            if (SignBlocker)
             {
-                richTextBox1.Text = richTextBox1.Text.Substring(0, (richTextBox1.Text.Length - 1));
+                Display.Text += clicked.Text;
             }
             else
             {
-                richTextBox1.Text = "0";
+                Display.Text = clicked.Text;
+                SignBlocker = true;
             }
         }
 
-        private void buttonCE_Click(object sender, EventArgs e)
+        private void buttonEqualsCompute_Click(object sender, EventArgs e)
         {
-            richTextBox1.Text = "0";
+            var answer = new DataTable().Compute(Display.Text.Replace('x', '*').Replace('÷', '/'), null);
+            Story.Text = Display.Text;
+            Display.Text = answer.ToString();
         }
-
-        private void buttonClear_Click(object sender, EventArgs e)
+        private void buttonEquals_Click(object sender, EventArgs e)
         {
-            richTextBox1.Text = "0";
-            History.Text = "0";
+
+            SecondArgument = Convert.ToDouble(Display.Text.Replace(".", ","));
+            Story.Text += $"{SecondArgument}=";
+
+            double result = 0;
+
+            switch (operations)
+            {
+                case Operations.None:
+                    MessageBox.Show("No Operation");
+                    break;
+                case Operations.Plus:
+                    result = FirstArgument + SecondArgument;
+                    break;
+                case Operations.Minus:
+                    result = FirstArgument - SecondArgument;
+                    break;
+                case Operations.Multiply:
+                    result = FirstArgument * SecondArgument;
+                    break;
+                case Operations.Divide:
+                    result = FirstArgument / SecondArgument;
+                    break;
+            }
+
+            Display.Text = result.ToString().Replace(".", ",");
+
         }
     }
 }

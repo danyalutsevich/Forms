@@ -24,9 +24,9 @@ namespace WinForms
             config.AddRule(LogLevel.Trace, LogLevel.Fatal, new NLog.Targets.FileTarget("file") { FileName = "log.txt" });
             LogManager.Configuration = config;
                 
+            Logger logger=LogManager.GetCurrentClassLogger();
 
-
-            Application.Run(new Forms.Portal());
+            Application.Run(new Forms.Portal(logger));
         }
     }
 }
