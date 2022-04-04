@@ -34,7 +34,7 @@
             this.BarStyle = new System.Windows.Forms.Label();
             this.comboBoxStyles = new System.Windows.Forms.ComboBox();
             this.WokringTime = new System.Windows.Forms.Label();
-            this.ProgressTime = new System.Windows.Forms.ListBox();
+            this.ProgressTime = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // progressBar
@@ -91,7 +91,7 @@
             // 
             this.WokringTime.AutoSize = true;
             this.WokringTime.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.WokringTime.Location = new System.Drawing.Point(12, 270);
+            this.WokringTime.Location = new System.Drawing.Point(166, 302);
             this.WokringTime.Name = "WokringTime";
             this.WokringTime.Size = new System.Drawing.Size(35, 14);
             this.WokringTime.TabIndex = 5;
@@ -99,13 +99,13 @@
             // 
             // ProgressTime
             // 
-            this.ProgressTime.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ProgressTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.ProgressTime.FormattingEnabled = true;
-            this.ProgressTime.ItemHeight = 14;
-            this.ProgressTime.Location = new System.Drawing.Point(51, 270);
+            this.ProgressTime.Location = new System.Drawing.Point(145, 319);
             this.ProgressTime.Name = "ProgressTime";
-            this.ProgressTime.Size = new System.Drawing.Size(120, 88);
-            this.ProgressTime.TabIndex = 6;
+            this.ProgressTime.Size = new System.Drawing.Size(77, 150);
+            this.ProgressTime.TabIndex = 7;
+            this.ProgressTime.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBoxTime_KeyUp);
             // 
             // ProgressForm
             // 
@@ -135,6 +135,6 @@
         private System.Windows.Forms.Label BarStyle;
         private System.Windows.Forms.ComboBox comboBoxStyles;
         private System.Windows.Forms.Label WokringTime;
-        private System.Windows.Forms.ListBox ProgressTime;
+        private System.Windows.Forms.ComboBox ProgressTime;
     }
 }

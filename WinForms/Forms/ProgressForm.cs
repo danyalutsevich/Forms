@@ -35,9 +35,9 @@ namespace WinForms.Forms
             comboBoxStyles.Items.Add(new BarStyle { color = Color.Yellow, name = "Yellow" });
             comboBoxStyles.SelectedIndex = 0;
 
-            ProgressTime.Items.Add(1000);
-            ProgressTime.Items.Add(2000);
-            ProgressTime.Items.Add(5000);
+            ProgressTime.Items.Add(1000d);
+            ProgressTime.Items.Add(2000d);
+            ProgressTime.Items.Add(4000d);
             ProgressTime.SelectedIndex = 0;
 
         }
@@ -57,10 +57,40 @@ namespace WinForms.Forms
             {
                 progressBar.Value = i;
                 WokringTime.Text = stopwatch.ElapsedMilliseconds.ToString();
-                await Task.Delay(((int)ProgressTime.SelectedItem)/progressBar.Maximum);
 
+                var timeToWait = (double)ProgressTime.SelectedItem / progressBar.Maximum;
+                var time = TimeSpan.FromMilliseconds(timeToWait);
+                await Task.Delay(time);
             }
             stopwatch.Stop();
+        }
+
+        private void comboBoxTime_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // так как у меня время в милисекундах то я изменю допустимый промежуток с (0 ; 10) сек
+                // на (0 ; 10000) мс
+
+                double timeToAdd = 0;
+                try
+                {
+                    timeToAdd = Convert.ToDouble(ProgressTime.Text.Replace(".", ","));
+                    if (timeToAdd > 0 && timeToAdd < 10000)
+                    {
+                        ProgressTime.Items.Add(timeToAdd);
+                        ProgressTime.SelectedIndex = ProgressTime.Items.Count - 1;
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Invalid input, enter number greater than 0 and less than 10000");
+                }
+            }
         }
     }
 
