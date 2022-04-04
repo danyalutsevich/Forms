@@ -43,6 +43,10 @@
             "NLog": {
               "target": "Package",
               "version": "[4.7.15, )"
+            },
+            "Unity.NetCore": {
+              "target": "Package",
+              "version": "[4.0.3, )"
             }
           },
           "imports": [

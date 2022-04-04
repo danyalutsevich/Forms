@@ -21,3 +21,8 @@ C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinFor
 C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinForms.Properties.Resources.resources
 C:\Users\luche\source\repos\C#\WinForms\WinForms\bin\Debug\net5.0-windows\NLog.dll
 C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinForms.csproj.CopyComplete
+C:\Users\luche\source\repos\C#\WinForms\WinForms\bin\Debug\net5.0-windows\Microsoft.Practices.ServiceLocation.dll
+C:\Users\luche\source\repos\C#\WinForms\WinForms\bin\Debug\net5.0-windows\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\luche\source\repos\C#\WinForms\WinForms\bin\Debug\net5.0-windows\Microsoft.Practices.Unity.RegistrationByConvention.dll
+C:\Users\luche\source\repos\C#\WinForms\WinForms\bin\Debug\net5.0-windows\Microsoft.Practices.Unity.dll
+C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinForms.Forms.ProgressForm.resources

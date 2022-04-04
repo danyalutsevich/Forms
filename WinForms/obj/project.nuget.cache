@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "XBhdBNCIVNz7lh285yjDC9FwkpPTzIeM7s1WpqXFJwqXcPbWY8lT1bsKnFwn4RIh9m+S8ybXYIFhsXWdg4JmkQ==",
+  "dgSpecHash": "QT8oe4shzay7YuyTp0TBeBKxpTf2lUEnSAQyt6Fhh9j/Yr6ioAQn35mNla28eSY6Np2uDkz4Z1Qd29Y48Yjr2w==",
   "success": true,
   "projectFilePath": "C:\\Users\\luche\\source\\repos\\C#\\WinForms\\WinForms\\WinForms.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\luche\\.nuget\\packages\\nlog\\4.7.15\\nlog.4.7.15.nupkg.sha512"
+    "C:\\Users\\luche\\.nuget\\packages\\commonservicelocator.netcore\\1.3.1\\commonservicelocator.netcore.1.3.1.nupkg.sha512",
+    "C:\\Users\\luche\\.nuget\\packages\\nlog\\4.7.15\\nlog.4.7.15.nupkg.sha512",
+    "C:\\Users\\luche\\.nuget\\packages\\unity.netcore\\4.0.3\\unity.netcore.4.0.3.nupkg.sha512"
   ],
   "logs": []
 }
