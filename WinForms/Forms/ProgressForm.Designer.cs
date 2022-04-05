@@ -30,11 +30,13 @@
         {
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.buttonRun = new System.Windows.Forms.Button();
-            this.Stop = new System.Windows.Forms.Button();
+            this.buttonStop = new System.Windows.Forms.Button();
             this.BarStyle = new System.Windows.Forms.Label();
             this.comboBoxStyles = new System.Windows.Forms.ComboBox();
             this.WokringTime = new System.Windows.Forms.Label();
             this.ProgressTime = new System.Windows.Forms.ComboBox();
+            this.buttonContinue = new System.Windows.Forms.Button();
+            this.buttonReverse = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // progressBar
@@ -56,15 +58,16 @@
             this.buttonRun.UseVisualStyleBackColor = true;
             this.buttonRun.Click += new System.EventHandler(this.buttonRun_Click);
             // 
-            // Stop
+            // buttonStop
             // 
-            this.Stop.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Stop.Location = new System.Drawing.Point(294, 244);
-            this.Stop.Name = "Stop";
-            this.Stop.Size = new System.Drawing.Size(75, 23);
-            this.Stop.TabIndex = 1;
-            this.Stop.Text = "Stop";
-            this.Stop.UseVisualStyleBackColor = true;
+            this.buttonStop.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonStop.Location = new System.Drawing.Point(294, 244);
+            this.buttonStop.Name = "buttonStop";
+            this.buttonStop.Size = new System.Drawing.Size(75, 23);
+            this.buttonStop.TabIndex = 1;
+            this.buttonStop.Text = "Stop";
+            this.buttonStop.UseVisualStyleBackColor = true;
+            this.buttonStop.Click += new System.EventHandler(this.Stop_Click);
             // 
             // BarStyle
             // 
@@ -91,7 +94,7 @@
             // 
             this.WokringTime.AutoSize = true;
             this.WokringTime.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.WokringTime.Location = new System.Drawing.Point(166, 302);
+            this.WokringTime.Location = new System.Drawing.Point(164, 334);
             this.WokringTime.Name = "WokringTime";
             this.WokringTime.Size = new System.Drawing.Size(35, 14);
             this.WokringTime.TabIndex = 5;
@@ -100,25 +103,52 @@
             // ProgressTime
             // 
             this.ProgressTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.ProgressTime.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ProgressTime.FormattingEnabled = true;
-            this.ProgressTime.Location = new System.Drawing.Point(145, 319);
+            this.ProgressTime.Location = new System.Drawing.Point(145, 351);
             this.ProgressTime.Name = "ProgressTime";
             this.ProgressTime.Size = new System.Drawing.Size(77, 150);
             this.ProgressTime.TabIndex = 7;
             this.ProgressTime.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBoxTime_KeyUp);
             // 
+            // buttonContinue
+            // 
+            this.buttonContinue.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonContinue.Location = new System.Drawing.Point(97, 283);
+            this.buttonContinue.Name = "buttonContinue";
+            this.buttonContinue.Size = new System.Drawing.Size(75, 23);
+            this.buttonContinue.TabIndex = 8;
+            this.buttonContinue.Text = "Continue";
+            this.buttonContinue.UseVisualStyleBackColor = true;
+            this.buttonContinue.Click += new System.EventHandler(this.buttonContinue_Click);
+            // 
+            // buttonReverse
+            // 
+            this.buttonReverse.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonReverse.Location = new System.Drawing.Point(213, 283);
+            this.buttonReverse.Name = "buttonReverse";
+            this.buttonReverse.Size = new System.Drawing.Size(75, 23);
+            this.buttonReverse.TabIndex = 9;
+            this.buttonReverse.Text = "Reverse";
+            this.buttonReverse.UseVisualStyleBackColor = true;
+            this.buttonReverse.Click += new System.EventHandler(this.buttonReverse_Click);
+            // 
             // ProgressForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(381, 592);
+            this.Controls.Add(this.buttonReverse);
+            this.Controls.Add(this.buttonContinue);
             this.Controls.Add(this.ProgressTime);
             this.Controls.Add(this.WokringTime);
             this.Controls.Add(this.comboBoxStyles);
             this.Controls.Add(this.BarStyle);
-            this.Controls.Add(this.Stop);
+            this.Controls.Add(this.buttonStop);
             this.Controls.Add(this.buttonRun);
             this.Controls.Add(this.progressBar);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.Name = "ProgressForm";
             this.Text = "ProgressForm";
             this.Load += new System.EventHandler(this.ProgressForm_Load);
@@ -131,10 +161,12 @@
 
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Button buttonRun;
-        private System.Windows.Forms.Button Stop;
+        private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.Label BarStyle;
         private System.Windows.Forms.ComboBox comboBoxStyles;
         private System.Windows.Forms.Label WokringTime;
         private System.Windows.Forms.ComboBox ProgressTime;
+        private System.Windows.Forms.Button buttonContinue;
+        private System.Windows.Forms.Button buttonReverse;
     }
 }
