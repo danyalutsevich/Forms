@@ -191,7 +191,7 @@ namespace WinForms.Forms
 
             MoveCells(e.KeyData);
             AddCell();
-
+            ColorLabels();
 
 
         }
@@ -275,7 +275,7 @@ namespace WinForms.Forms
                             {
                                 labels2D[y - 1][x].Text = labels2D[y][x].Text;
                                 labels2D[y][x].Text = "";
-                                y++;
+                                y--;
                             }
 
                             if (labels2D[y][x].Text == labels2D[y - 1][x].Text)
@@ -283,35 +283,72 @@ namespace WinForms.Forms
                                 labels2D[y - 1][x].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
                                 labels2D[y][x].Text = "";
                             }
-
-                            #region old Version
-
-                            //while (labels2D[y + 1][x].Text == ""
-                            //    || labels2D[y][x].Text == labels2D[y + 1][x].Text)
-                            //{
-                            //    if (y + 1 >= 3)
-                            //    {
-                            //        break;
-                            //    }
-                            //    if (labels2D[y][x].Text == labels2D[y + 1][x].Text)
-                            //    {
-
-                            //        labels2D[y + 1][x].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
-                            //        labels2D[y][x].Text = "";
-                            //    }
-
-                            //    if (labels2D[y + 1][x].Text == "")
-                            //    {
-                            //        labels2D[y + 1][x].Text = labels2D[y][x].Text;
-                            //        labels2D[y][x].Text = "";
-                            //    }
-                            //    y++;
-                            //}
-                            #endregion
                         }
                         catch { }
                     }
                 }
+            }
+            else if(key == Keys.Left)
+            {
+                for (int i = 0; i <= 3; i++)
+                {
+                    for (int j = 0; j <= 3; j++)
+                    {
+                        try
+                        {
+                            int x = i;
+                            int y = j;
+
+                            while (labels2D[y][x-1].Text == "")
+                            {
+                                labels2D[y][x-1].Text = labels2D[y][x].Text;
+                                labels2D[y][x].Text = "";
+                                x--;
+                            }
+
+                            if (labels2D[y][x].Text == labels2D[y][x-1].Text)
+                            {
+                                labels2D[y][x-1].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
+                                labels2D[y][x].Text = "";
+                            }
+                        }
+                        catch { }
+                    }
+                }
+
+
+
+            }
+            else if(key == Keys.Right)
+            {
+
+                for (int i = 3; i >= 0; i--)
+                {
+                    for (int j = 3; j >= 0; j--)
+                    {
+                        try
+                        {
+                            int x = i;
+                            int y = j;
+
+                            while (labels2D[y][x+1].Text == "")
+                            {
+                                labels2D[y][x+1].Text = labels2D[y][x].Text;
+                                labels2D[y][x].Text = "";
+                                x++;
+                            }
+
+                            if (labels2D[y][x].Text == labels2D[y][x+1].Text)
+                            {
+                                labels2D[y][x+1].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
+                                labels2D[y][x].Text = "";
+                            }
+                        }
+                        catch { }
+
+                    }
+                }
+
             }
 
         }
