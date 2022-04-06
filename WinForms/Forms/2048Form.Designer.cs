@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(_2048Form));
             this.panel1 = new System.Windows.Forms.Panel();
             this.Cell00 = new System.Windows.Forms.Label();
             this.Cell01 = new System.Windows.Forms.Label();
@@ -53,9 +54,7 @@
             this.labelR = new System.Windows.Forms.Label();
             this.labelG = new System.Windows.Forms.Label();
             this.labelB = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.checkBoxControls = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -283,7 +282,9 @@
             this.hScrollBar1.Name = "hScrollBar1";
             this.hScrollBar1.Size = new System.Drawing.Size(322, 17);
             this.hScrollBar1.TabIndex = 1;
+            this.hScrollBar1.Value = 450;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
+            this.hScrollBar1.KeyDown += new System.Windows.Forms.KeyEventHandler(this._2048Form_KeyDown);
             // 
             // labelScrollValue
             // 
@@ -305,6 +306,7 @@
             this.hScrollBarR.TabIndex = 1;
             this.hScrollBarR.Value = 50;
             this.hScrollBarR.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
+            this.hScrollBarR.KeyDown += new System.Windows.Forms.KeyEventHandler(this._2048Form_KeyDown);
             // 
             // hScrollBarG
             // 
@@ -315,6 +317,7 @@
             this.hScrollBarG.Size = new System.Drawing.Size(322, 17);
             this.hScrollBarG.TabIndex = 1;
             this.hScrollBarG.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
+            this.hScrollBarG.KeyDown += new System.Windows.Forms.KeyEventHandler(this._2048Form_KeyDown);
             // 
             // hScrollBarB
             // 
@@ -323,8 +326,9 @@
             this.hScrollBarB.Maximum = 255;
             this.hScrollBarB.Name = "hScrollBarB";
             this.hScrollBarB.Size = new System.Drawing.Size(322, 17);
-            this.hScrollBarB.TabIndex = 1;
+            this.hScrollBarB.TabIndex = 100;
             this.hScrollBarB.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
+            this.hScrollBarB.KeyDown += new System.Windows.Forms.KeyEventHandler(this._2048Form_KeyDown);
             // 
             // labelR
             // 
@@ -356,37 +360,21 @@
             this.labelB.TabIndex = 2;
             this.labelB.Text = "0";
             // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(12, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // checkBoxControls
             // 
             this.checkBoxControls.AutoSize = true;
+            this.checkBoxControls.Checked = true;
+            this.checkBoxControls.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxControls.Enabled = false;
+            this.checkBoxControls.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.checkBoxControls.Location = new System.Drawing.Point(356, 12);
             this.checkBoxControls.Name = "checkBoxControls";
-            this.checkBoxControls.Size = new System.Drawing.Size(71, 19);
+            this.checkBoxControls.Size = new System.Drawing.Size(82, 18);
             this.checkBoxControls.TabIndex = 4;
             this.checkBoxControls.Text = "Controls";
             this.checkBoxControls.UseVisualStyleBackColor = true;
             this.checkBoxControls.CheckedChanged += new System.EventHandler(this.checkBoxControls_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 71);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "label1";
+            this.checkBoxControls.KeyDown += new System.Windows.Forms.KeyEventHandler(this._2048Form_KeyDown);
             // 
             // _2048Form
             // 
@@ -394,9 +382,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(461, 599);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.checkBoxControls);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.labelB);
             this.Controls.Add(this.labelG);
             this.Controls.Add(this.labelR);
@@ -406,8 +392,9 @@
             this.Controls.Add(this.hScrollBarR);
             this.Controls.Add(this.hScrollBar1);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "_2048Form";
-            this.Text = "_2048Form";
+            this.Text = "2048";
             this.Load += new System.EventHandler(this._2048Form_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this._2048Form_KeyDown);
             this.panel1.ResumeLayout(false);
@@ -443,8 +430,6 @@
         private System.Windows.Forms.Label labelR;
         private System.Windows.Forms.Label labelG;
         private System.Windows.Forms.Label labelB;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkBoxControls;
-        private System.Windows.Forms.Label label1;
     }
 }

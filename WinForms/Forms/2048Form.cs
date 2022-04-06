@@ -35,11 +35,18 @@ namespace WinForms.Forms
             {
                 try
                 {
-                    var text = Convert.ToInt32(l.Text);
-                    var mappedValue = Map((text * hScrollBar1.Value) % 2048, 0, 2048, 0, 255) % 255;
-                    Color color = Color.FromArgb((mappedValue + hScrollBarR.Value) % 256, (mappedValue + hScrollBarG.Value) % 256, (mappedValue + hScrollBarB.Value) % 256);
+                    if (l.Text == "")
+                    {
+                        l.BackColor = Color.FromArgb(160,160,160);
+                    }
+                    else
+                    {
+                        var text = Convert.ToInt32(l.Text);
+                        var mappedValue = Map((text * hScrollBar1.Value) % 2048, 0, 2048, 0, 255) % 255;
+                        Color color = Color.FromArgb((mappedValue + hScrollBarR.Value) % 256, (mappedValue + hScrollBarG.Value) % 256, (mappedValue + hScrollBarB.Value) % 256);
 
-                    l.BackColor = color;
+                        l.BackColor = color;
+                    }
                 }
                 catch { }
             }
@@ -80,35 +87,6 @@ namespace WinForms.Forms
                     empty[random.Next(empty.Count)].Text = "4";
                 }
             }
-
-
-            //int x = 0;
-            //int y = 0;
-
-            //int counter = 0;
-
-            //for (int i = amount; i >= 0;)
-            //{
-            //    x = random.Next(4);
-            //    y = random.Next(4);
-            //    counter++;
-            //    label1.Text=counter.ToString();
-
-            //    if (labels2D[y][x].Text == "")
-            //    {
-            //        if (value <= 9)
-            //        {
-            //            labels2D[y][x].Text = "2";
-            //        }
-            //        else
-            //        {
-            //            labels2D[y][x].Text = "4";
-            //        }
-            //        i--;
-            //    }
-            //}
-
-
         }
 
         private void _2048Form_Load(object sender, EventArgs e)
@@ -124,21 +102,13 @@ namespace WinForms.Forms
             }
 
             labels2D = To2DArray();
-
-            //var sb = new StringBuilder();
-
-            //for(int i = 0; i < 4; i++)
-            //{
-            //    for(int j = 0; j < 4; j++)
-            //    {
-            //        sb.Append(labels2D[i][j].Name+" ");
-            //    }
-            //    sb.AppendLine();
-            //}
-
-            //MessageBox.Show(sb.ToString());
-
             ClearGameField();
+
+            //checkBoxControls.Enabled = false;
+
+            //this.Focus();
+            this.Activate();
+
             ColorLabels();
             AddCell();
 
@@ -229,31 +199,6 @@ namespace WinForms.Forms
                                 labels2D[y + 1][x].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
                                 labels2D[y][x].Text = "";
                             }
-
-                            #region old Version
-
-                            //while (labels2D[y + 1][x].Text == ""
-                            //    || labels2D[y][x].Text == labels2D[y + 1][x].Text)
-                            //{
-                            //    if (y + 1 >= 3)
-                            //    {
-                            //        break;
-                            //    }
-                            //    if (labels2D[y][x].Text == labels2D[y + 1][x].Text)
-                            //    {
-
-                            //        labels2D[y + 1][x].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
-                            //        labels2D[y][x].Text = "";
-                            //    }
-
-                            //    if (labels2D[y + 1][x].Text == "")
-                            //    {
-                            //        labels2D[y + 1][x].Text = labels2D[y][x].Text;
-                            //        labels2D[y][x].Text = "";
-                            //    }
-                            //    y++;
-                            //}
-                            #endregion
                         }
                         catch { }
 
@@ -288,7 +233,7 @@ namespace WinForms.Forms
                     }
                 }
             }
-            else if(key == Keys.Left)
+            else if (key == Keys.Left)
             {
                 for (int i = 0; i <= 3; i++)
                 {
@@ -299,16 +244,16 @@ namespace WinForms.Forms
                             int x = i;
                             int y = j;
 
-                            while (labels2D[y][x-1].Text == "")
+                            while (labels2D[y][x - 1].Text == "")
                             {
-                                labels2D[y][x-1].Text = labels2D[y][x].Text;
+                                labels2D[y][x - 1].Text = labels2D[y][x].Text;
                                 labels2D[y][x].Text = "";
                                 x--;
                             }
 
-                            if (labels2D[y][x].Text == labels2D[y][x-1].Text)
+                            if (labels2D[y][x].Text == labels2D[y][x - 1].Text)
                             {
-                                labels2D[y][x-1].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
+                                labels2D[y][x - 1].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
                                 labels2D[y][x].Text = "";
                             }
                         }
@@ -319,7 +264,7 @@ namespace WinForms.Forms
 
 
             }
-            else if(key == Keys.Right)
+            else if (key == Keys.Right)
             {
 
                 for (int i = 3; i >= 0; i--)
@@ -331,16 +276,16 @@ namespace WinForms.Forms
                             int x = i;
                             int y = j;
 
-                            while (labels2D[y][x+1].Text == "")
+                            while (labels2D[y][x + 1].Text == "")
                             {
-                                labels2D[y][x+1].Text = labels2D[y][x].Text;
+                                labels2D[y][x + 1].Text = labels2D[y][x].Text;
                                 labels2D[y][x].Text = "";
                                 x++;
                             }
 
-                            if (labels2D[y][x].Text == labels2D[y][x+1].Text)
+                            if (labels2D[y][x].Text == labels2D[y][x + 1].Text)
                             {
-                                labels2D[y][x+1].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
+                                labels2D[y][x + 1].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
                                 labels2D[y][x].Text = "";
                             }
                         }
@@ -355,16 +300,16 @@ namespace WinForms.Forms
 
         private void checkBoxControls_CheckedChanged(object sender, EventArgs e)
         {
+            hScrollBar1.Enabled = checkBoxControls.Checked;
+            hScrollBarR.Enabled = checkBoxControls.Checked;
+            hScrollBarG.Enabled = checkBoxControls.Checked;
+            hScrollBarB.Enabled = checkBoxControls.Checked;
 
-            if (checkBoxControls.Checked)
-            {
+            hScrollBar1.Visible = checkBoxControls.Checked;
+            hScrollBarR.Visible = checkBoxControls.Checked;
+            hScrollBarG.Visible = checkBoxControls.Checked;
+            hScrollBarB.Visible = checkBoxControls.Checked;
 
-                hScrollBar1.Enabled = false;
-                hScrollBarR.Enabled = false;
-                hScrollBarG.Enabled = false;
-                hScrollBarB.Enabled = false;
-                button1.Enabled = false;
-            }
 
         }
     }
