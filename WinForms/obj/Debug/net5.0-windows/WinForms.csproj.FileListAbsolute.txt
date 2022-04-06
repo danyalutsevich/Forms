@@ -26,3 +26,4 @@ C:\Users\luche\source\repos\C#\WinForms\WinForms\bin\Debug\net5.0-windows\Micros
 C:\Users\luche\source\repos\C#\WinForms\WinForms\bin\Debug\net5.0-windows\Microsoft.Practices.Unity.RegistrationByConvention.dll
 C:\Users\luche\source\repos\C#\WinForms\WinForms\bin\Debug\net5.0-windows\Microsoft.Practices.Unity.dll
 C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinForms.Forms.ProgressForm.resources
+C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinForms.Forms._2048Form.resources

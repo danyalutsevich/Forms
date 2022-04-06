@@ -32,6 +32,7 @@
             this.Intro = new System.Windows.Forms.LinkLabel();
             this.Calculator = new System.Windows.Forms.LinkLabel();
             this.ProgressLink = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2048 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // Intro
@@ -70,11 +71,24 @@
             this.ProgressLink.Text = "Progress";
             this.ProgressLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ProgressLink_LinkClicked);
             // 
+            // linkLabel2048
+            // 
+            this.linkLabel2048.AutoSize = true;
+            this.linkLabel2048.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.linkLabel2048.Location = new System.Drawing.Point(12, 149);
+            this.linkLabel2048.Name = "linkLabel2048";
+            this.linkLabel2048.Size = new System.Drawing.Size(91, 25);
+            this.linkLabel2048.TabIndex = 0;
+            this.linkLabel2048.TabStop = true;
+            this.linkLabel2048.Text = "2048";
+            this.linkLabel2048.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2048_LinkClicked);
+            // 
             // Portal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.linkLabel2048);
             this.Controls.Add(this.ProgressLink);
             this.Controls.Add(this.Calculator);
             this.Controls.Add(this.Intro);
@@ -91,5 +105,6 @@
         private System.Windows.Forms.LinkLabel Intro;
         private System.Windows.Forms.LinkLabel Calculator;
         private System.Windows.Forms.LinkLabel ProgressLink;
+        private System.Windows.Forms.LinkLabel linkLabel2048;
     }
 }

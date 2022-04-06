@@ -35,5 +35,10 @@ namespace WinForms.Forms
         {
             Program.Container.Resolve<Forms.ProgressForm>().ShowDialog();
         }
+
+        private void linkLabel2048_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Program.Container.Resolve<Forms._2048Form>().ShowDialog();
+        }
     }
 }
