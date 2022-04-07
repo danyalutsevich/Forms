@@ -37,7 +37,7 @@ namespace WinForms.Forms
                 {
                     if (l.Text == "")
                     {
-                        l.BackColor = Color.FromArgb(160,160,160);
+                        l.BackColor = Color.FromArgb(160, 160, 160);
                     }
                     else
                     {
@@ -181,7 +181,7 @@ namespace WinForms.Forms
             // Right  0 0
             // Left   3 3
 
-            if (key == Keys.Down || key==Keys.S)
+            if (key == Keys.Down || key == Keys.S)
             {
                 for (int i = 3; i >= 0; i--)
                 {
@@ -265,9 +265,6 @@ namespace WinForms.Forms
                         catch { }
                     }
                 }
-
-
-
             }
             else if (key == Keys.Right || key == Keys.D)
             {
@@ -320,22 +317,26 @@ namespace WinForms.Forms
 
         private Point mouseUp;
         private Point mouseDown;
+        private bool IsMouseDown = false;
 
         private void _2048Form_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown.X = e.X;
             mouseDown.Y = e.Y;
-
+            IsMouseDown = true;
         }
 
         private void _2048Form_MouseUp(object sender, MouseEventArgs e)
         {
-
-            mouseUp.X = e.X;
-            mouseUp.Y = e.Y;
-            SensorMove();
-            AddCell();
-            ColorLabels();
+            //if (IsMouseDown)
+            {
+                mouseUp.X = e.X;
+                mouseUp.Y = e.Y;
+                SensorMove();
+                AddCell();
+                ColorLabels();
+                IsMouseDown = false;
+            }
         }
 
         private void SensorMove()
@@ -373,6 +374,6 @@ namespace WinForms.Forms
 
 
         }
-    
+
     }
 }
