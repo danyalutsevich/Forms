@@ -104,13 +104,10 @@ namespace WinForms.Forms
             labels2D = To2DArray();
             ClearGameField();
 
-            //checkBoxControls.Enabled = false;
+            this.ActiveControl = null;
 
-            //this.Focus();
-            this.Activate();
-
-            ColorLabels();
             AddCell();
+            ColorLabels();
 
         }
 
@@ -166,6 +163,14 @@ namespace WinForms.Forms
 
         }
 
+        enum MoveDirection
+        {
+            Up = Keys.Up,
+            Down = Keys.Down,
+            Left = Keys.Left,
+            Right = Keys.Right,
+        }
+
         private void MoveCells(Keys key)
         {
             //        x y 
@@ -176,7 +181,7 @@ namespace WinForms.Forms
             // Right  0 0
             // Left   3 3
 
-            if (key == Keys.Down)
+            if (key == Keys.Down || key==Keys.S)
             {
                 for (int i = 3; i >= 0; i--)
                 {
@@ -205,7 +210,7 @@ namespace WinForms.Forms
                     }
                 }
             }
-            else if (key == Keys.Up)
+            else if (key == Keys.Up || key == Keys.W)
             {
                 for (int i = 0; i <= 3; i++)
                 {
@@ -233,7 +238,7 @@ namespace WinForms.Forms
                     }
                 }
             }
-            else if (key == Keys.Left)
+            else if (key == Keys.Left || key == Keys.A)
             {
                 for (int i = 0; i <= 3; i++)
                 {
@@ -264,7 +269,7 @@ namespace WinForms.Forms
 
 
             }
-            else if (key == Keys.Right)
+            else if (key == Keys.Right || key == Keys.D)
             {
 
                 for (int i = 3; i >= 0; i--)
@@ -312,5 +317,62 @@ namespace WinForms.Forms
 
 
         }
+
+        private Point mouseUp;
+        private Point mouseDown;
+
+        private void _2048Form_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown.X = e.X;
+            mouseDown.Y = e.Y;
+
+        }
+
+        private void _2048Form_MouseUp(object sender, MouseEventArgs e)
+        {
+
+            mouseUp.X = e.X;
+            mouseUp.Y = e.Y;
+            SensorMove();
+            AddCell();
+            ColorLabels();
+        }
+
+        private void SensorMove()
+        {
+
+            if (Math.Abs(mouseUp.X - mouseDown.X) < Math.Abs(mouseUp.Y - mouseDown.Y))
+            {
+
+                if (mouseUp.Y < mouseDown.Y)  // Up
+                {
+                    MoveCells((Keys)MoveDirection.Up);
+                }
+                else  // Down
+                {
+                    MoveCells((Keys)MoveDirection.Down);
+
+                }
+
+            }
+            else
+            {
+
+                if (mouseUp.Y < mouseDown.Y)  // Left
+                {
+                    MoveCells((Keys)MoveDirection.Left);
+
+                }
+                else  // Rigth
+                {
+                    MoveCells((Keys)MoveDirection.Right);
+
+                }
+
+            }
+
+
+        }
+    
     }
 }

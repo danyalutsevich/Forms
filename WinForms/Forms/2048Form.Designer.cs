@@ -55,6 +55,7 @@
             this.labelG = new System.Windows.Forms.Label();
             this.labelB = new System.Windows.Forms.Label();
             this.checkBoxControls = new System.Windows.Forms.CheckBox();
+            this.labelMousePos = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -277,10 +278,10 @@
             // hScrollBar1
             // 
             this.hScrollBar1.Enabled = false;
-            this.hScrollBar1.Location = new System.Drawing.Point(127, 37);
+            this.hScrollBar1.Location = new System.Drawing.Point(233, 37);
             this.hScrollBar1.Maximum = 1000;
             this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(322, 17);
+            this.hScrollBar1.Size = new System.Drawing.Size(216, 17);
             this.hScrollBar1.TabIndex = 1;
             this.hScrollBar1.Value = 450;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
@@ -290,7 +291,7 @@
             // 
             this.labelScrollValue.AutoSize = true;
             this.labelScrollValue.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelScrollValue.Location = new System.Drawing.Point(83, 37);
+            this.labelScrollValue.Location = new System.Drawing.Point(213, 40);
             this.labelScrollValue.Name = "labelScrollValue";
             this.labelScrollValue.Size = new System.Drawing.Size(14, 14);
             this.labelScrollValue.TabIndex = 2;
@@ -299,10 +300,10 @@
             // hScrollBarR
             // 
             this.hScrollBarR.Enabled = false;
-            this.hScrollBarR.Location = new System.Drawing.Point(127, 63);
+            this.hScrollBarR.Location = new System.Drawing.Point(233, 63);
             this.hScrollBarR.Maximum = 255;
             this.hScrollBarR.Name = "hScrollBarR";
-            this.hScrollBarR.Size = new System.Drawing.Size(322, 17);
+            this.hScrollBarR.Size = new System.Drawing.Size(216, 17);
             this.hScrollBarR.TabIndex = 1;
             this.hScrollBarR.Value = 50;
             this.hScrollBarR.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
@@ -311,10 +312,10 @@
             // hScrollBarG
             // 
             this.hScrollBarG.Enabled = false;
-            this.hScrollBarG.Location = new System.Drawing.Point(127, 89);
+            this.hScrollBarG.Location = new System.Drawing.Point(233, 89);
             this.hScrollBarG.Maximum = 255;
             this.hScrollBarG.Name = "hScrollBarG";
-            this.hScrollBarG.Size = new System.Drawing.Size(322, 17);
+            this.hScrollBarG.Size = new System.Drawing.Size(216, 17);
             this.hScrollBarG.TabIndex = 1;
             this.hScrollBarG.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             this.hScrollBarG.KeyDown += new System.Windows.Forms.KeyEventHandler(this._2048Form_KeyDown);
@@ -322,10 +323,10 @@
             // hScrollBarB
             // 
             this.hScrollBarB.Enabled = false;
-            this.hScrollBarB.Location = new System.Drawing.Point(127, 115);
+            this.hScrollBarB.Location = new System.Drawing.Point(233, 115);
             this.hScrollBarB.Maximum = 255;
             this.hScrollBarB.Name = "hScrollBarB";
-            this.hScrollBarB.Size = new System.Drawing.Size(322, 17);
+            this.hScrollBarB.Size = new System.Drawing.Size(216, 17);
             this.hScrollBarB.TabIndex = 100;
             this.hScrollBarB.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             this.hScrollBarB.KeyDown += new System.Windows.Forms.KeyEventHandler(this._2048Form_KeyDown);
@@ -334,7 +335,7 @@
             // 
             this.labelR.AutoSize = true;
             this.labelR.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelR.Location = new System.Drawing.Point(83, 63);
+            this.labelR.Location = new System.Drawing.Point(213, 66);
             this.labelR.Name = "labelR";
             this.labelR.Size = new System.Drawing.Size(14, 14);
             this.labelR.TabIndex = 2;
@@ -344,7 +345,7 @@
             // 
             this.labelG.AutoSize = true;
             this.labelG.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelG.Location = new System.Drawing.Point(83, 89);
+            this.labelG.Location = new System.Drawing.Point(213, 92);
             this.labelG.Name = "labelG";
             this.labelG.Size = new System.Drawing.Size(14, 14);
             this.labelG.TabIndex = 2;
@@ -354,7 +355,7 @@
             // 
             this.labelB.AutoSize = true;
             this.labelB.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelB.Location = new System.Drawing.Point(83, 115);
+            this.labelB.Location = new System.Drawing.Point(213, 118);
             this.labelB.Name = "labelB";
             this.labelB.Size = new System.Drawing.Size(14, 14);
             this.labelB.TabIndex = 2;
@@ -365,7 +366,6 @@
             this.checkBoxControls.AutoSize = true;
             this.checkBoxControls.Checked = true;
             this.checkBoxControls.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxControls.Enabled = false;
             this.checkBoxControls.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.checkBoxControls.Location = new System.Drawing.Point(356, 12);
             this.checkBoxControls.Name = "checkBoxControls";
@@ -376,12 +376,23 @@
             this.checkBoxControls.CheckedChanged += new System.EventHandler(this.checkBoxControls_CheckedChanged);
             this.checkBoxControls.KeyDown += new System.Windows.Forms.KeyEventHandler(this._2048Form_KeyDown);
             // 
+            // labelMousePos
+            // 
+            this.labelMousePos.AutoSize = true;
+            this.labelMousePos.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelMousePos.Location = new System.Drawing.Point(233, 13);
+            this.labelMousePos.Name = "labelMousePos";
+            this.labelMousePos.Size = new System.Drawing.Size(35, 14);
+            this.labelMousePos.TabIndex = 101;
+            this.labelMousePos.Text = "MPos";
+            // 
             // _2048Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(461, 599);
+            this.Controls.Add(this.labelMousePos);
             this.Controls.Add(this.checkBoxControls);
             this.Controls.Add(this.labelB);
             this.Controls.Add(this.labelG);
@@ -397,6 +408,8 @@
             this.Text = "2048";
             this.Load += new System.EventHandler(this._2048Form_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this._2048Form_KeyDown);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this._2048Form_MouseDown);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this._2048Form_MouseUp);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -431,5 +444,6 @@
         private System.Windows.Forms.Label labelG;
         private System.Windows.Forms.Label labelB;
         private System.Windows.Forms.CheckBox checkBoxControls;
+        private System.Windows.Forms.Label labelMousePos;
     }
 }
