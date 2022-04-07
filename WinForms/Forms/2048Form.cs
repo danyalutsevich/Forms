@@ -328,7 +328,7 @@ namespace WinForms.Forms
 
         private void _2048Form_MouseUp(object sender, MouseEventArgs e)
         {
-            //if (IsMouseDown)
+            if (IsMouseDown)
             {
                 mouseUp.X = e.X;
                 mouseUp.Y = e.Y;
