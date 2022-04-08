@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(_2048Form));
             this.panel1 = new System.Windows.Forms.Panel();
             this.Cell00 = new System.Windows.Forms.Label();
@@ -56,6 +57,9 @@
             this.labelB = new System.Windows.Forms.Label();
             this.checkBoxControls = new System.Windows.Forms.CheckBox();
             this.labelMousePos = new System.Windows.Forms.Label();
+            this.labelTimer = new System.Windows.Forms.Label();
+            this.timerClock = new System.Windows.Forms.Timer(this.components);
+            this.timerAnimation = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,6 +103,7 @@
             // 
             this.Cell01.BackColor = System.Drawing.SystemColors.ControlDark;
             this.Cell01.Font = new System.Drawing.Font("Bebas Neue", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Cell01.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Cell01.Location = new System.Drawing.Point(115, 9);
             this.Cell01.Margin = new System.Windows.Forms.Padding(3);
             this.Cell01.Name = "Cell01";
@@ -380,11 +385,32 @@
             // 
             this.labelMousePos.AutoSize = true;
             this.labelMousePos.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelMousePos.ForeColor = System.Drawing.SystemColors.ControlText;
             this.labelMousePos.Location = new System.Drawing.Point(233, 13);
             this.labelMousePos.Name = "labelMousePos";
             this.labelMousePos.Size = new System.Drawing.Size(35, 14);
             this.labelMousePos.TabIndex = 101;
             this.labelMousePos.Text = "MPos";
+            // 
+            // labelTimer
+            // 
+            this.labelTimer.AutoSize = true;
+            this.labelTimer.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelTimer.Location = new System.Drawing.Point(274, 12);
+            this.labelTimer.Name = "labelTimer";
+            this.labelTimer.Size = new System.Drawing.Size(63, 14);
+            this.labelTimer.TabIndex = 102;
+            this.labelTimer.Text = "00:00:00";
+            // 
+            // timerClock
+            // 
+            this.timerClock.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timerAnimation
+            // 
+            this.timerAnimation.Enabled = true;
+            this.timerAnimation.Interval = 10;
+            this.timerAnimation.Tick += new System.EventHandler(this.timerAnimation_Tick);
             // 
             // _2048Form
             // 
@@ -392,6 +418,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(461, 599);
+            this.Controls.Add(this.labelTimer);
             this.Controls.Add(this.labelMousePos);
             this.Controls.Add(this.checkBoxControls);
             this.Controls.Add(this.labelB);
@@ -445,5 +472,8 @@
         private System.Windows.Forms.Label labelB;
         private System.Windows.Forms.CheckBox checkBoxControls;
         private System.Windows.Forms.Label labelMousePos;
+        private System.Windows.Forms.Label labelTimer;
+        private System.Windows.Forms.Timer timerClock;
+        private System.Windows.Forms.Timer timerAnimation;
     }
 }

@@ -14,13 +14,16 @@ namespace WinForms.Forms
     {
         private Random random;
         private List<Label> labels;
-        public Label[][] labels2D { get; set; }
+        private Label[][] labels2D { get; set; }
+        private int TimeMS { get; set; }
+        private List<Label> LabelsToAnimate { get; set; }
 
         public _2048Form(Random random)
         {
+            LabelsToAnimate = new List<Label>();
             labels = new List<Label>();
             this.random = random;
-
+            TimeMS = 0;
             InitializeComponent();
         }
 
@@ -80,11 +83,17 @@ namespace WinForms.Forms
                 value = random.Next(11);
                 if (value <= 9)
                 {
-                    empty[random.Next(empty.Count)].Text = "2";
+                    var index = random.Next(empty.Count);
+                    empty[index].Text = "2";
+                    LabelsToAnimate.Add(empty[index]);
+                    R = 0;
+                    timerAnimation.Start();
                 }
                 else
                 {
-                    empty[random.Next(empty.Count)].Text = "4";
+                    var index = random.Next(empty.Count);
+                    empty[index].Text = "4";
+                    LabelsToAnimate.Add(empty[index]);
                 }
             }
         }
@@ -108,6 +117,8 @@ namespace WinForms.Forms
 
             AddCell();
             ColorLabels();
+            timerClock.Start();
+            panel1.ForeColor = this.ForeColor;
 
         }
 
@@ -155,12 +166,7 @@ namespace WinForms.Forms
 
         private void _2048Form_KeyDown(object sender, KeyEventArgs e)
         {
-
             MoveCells(e.KeyData);
-            AddCell();
-            ColorLabels();
-
-
         }
 
         enum MoveDirection
@@ -202,6 +208,7 @@ namespace WinForms.Forms
                             if (labels2D[y][x].Text == labels2D[y + 1][x].Text)
                             {
                                 labels2D[y + 1][x].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
+                                LabelsToAnimate.Add(labels2D[y + 1][x]);
                                 labels2D[y][x].Text = "";
                             }
                         }
@@ -231,6 +238,7 @@ namespace WinForms.Forms
                             if (labels2D[y][x].Text == labels2D[y - 1][x].Text)
                             {
                                 labels2D[y - 1][x].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
+                                LabelsToAnimate.Add(labels2D[y - 1][x]);
                                 labels2D[y][x].Text = "";
                             }
                         }
@@ -259,6 +267,7 @@ namespace WinForms.Forms
                             if (labels2D[y][x].Text == labels2D[y][x - 1].Text)
                             {
                                 labels2D[y][x - 1].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
+                                LabelsToAnimate.Add(labels2D[y][x-1]);
                                 labels2D[y][x].Text = "";
                             }
                         }
@@ -288,6 +297,7 @@ namespace WinForms.Forms
                             if (labels2D[y][x].Text == labels2D[y][x + 1].Text)
                             {
                                 labels2D[y][x + 1].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
+                                LabelsToAnimate.Add(labels2D[y][x+1]);
                                 labels2D[y][x].Text = "";
                             }
                         }
@@ -297,6 +307,29 @@ namespace WinForms.Forms
                 }
 
             }
+
+
+            if (key == Keys.Down || key == Keys.S)
+            {
+                AddCell();
+                ColorLabels();
+            }
+            else if (key == Keys.Up || key == Keys.W)
+            {
+                AddCell();
+                ColorLabels();
+            }
+            else if (key == Keys.Left || key == Keys.A)
+            {
+                AddCell();
+                ColorLabels();
+            }
+            else if (key == Keys.Right || key == Keys.D)
+            {
+                AddCell();
+                ColorLabels();
+            }
+
 
         }
 
@@ -358,7 +391,6 @@ namespace WinForms.Forms
             }
             else
             {
-
                 if (mouseUp.Y < mouseDown.Y)  // Left
                 {
                     MoveCells((Keys)MoveDirection.Left);
@@ -371,9 +403,67 @@ namespace WinForms.Forms
                 }
 
             }
+        }
+
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            TimeMS += timerClock.Interval;
+            var ts = TimeSpan.FromMilliseconds(TimeMS);
+
+
+            labelTimer.Text = $"{ts.Minutes}:{ts.Seconds}:{ts.Milliseconds}";
 
 
         }
+
+        public int R = 0;
+        public int G = 0;
+        public int B = 0;
+
+        private bool flag = false;
+
+
+
+        private void timerAnimation_Tick(object sender, EventArgs e)
+        {
+
+
+            foreach (var l in LabelsToAnimate)
+            {
+                if (l.Text == "2")
+                {
+                    LabelColorAnimation(l, l.BackColor);
+                }
+                else
+                {
+                    l.Font = new Font(l.Font.FontFamily, R / 2 + 5);
+                    LabelColorAnimation(l, l.BackColor);
+                }
+            }
+
+            R++;
+            LabelsToAnimate = LabelsToAnimate.Where(i => i.BackColor.A < 250).ToList();
+
+
+            if (R > 25)
+            {
+                timerAnimation.Stop();
+            }
+
+            
+        }
+
+        private void LabelColorAnimation(Label l ,Color color)
+        {
+            l.BackColor = Color.FromArgb(R * 10, color);
+        }
+
+    }
+    class AnimData
+    {
+
 
     }
 }
