@@ -267,7 +267,7 @@ namespace WinForms.Forms
                             if (labels2D[y][x].Text == labels2D[y][x - 1].Text)
                             {
                                 labels2D[y][x - 1].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
-                                LabelsToAnimate.Add(labels2D[y][x-1]);
+                                LabelsToAnimate.Add(labels2D[y][x - 1]);
                                 labels2D[y][x].Text = "";
                             }
                         }
@@ -297,7 +297,7 @@ namespace WinForms.Forms
                             if (labels2D[y][x].Text == labels2D[y][x + 1].Text)
                             {
                                 labels2D[y][x + 1].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
-                                LabelsToAnimate.Add(labels2D[y][x+1]);
+                                LabelsToAnimate.Add(labels2D[y][x + 1]);
                                 labels2D[y][x].Text = "";
                             }
                         }
@@ -429,7 +429,6 @@ namespace WinForms.Forms
         private void timerAnimation_Tick(object sender, EventArgs e)
         {
 
-
             foreach (var l in LabelsToAnimate)
             {
                 if (l.Text == "2")
@@ -438,7 +437,23 @@ namespace WinForms.Forms
                 }
                 else
                 {
-                    l.Font = new Font(l.Font.FontFamily, R / 2 + 5);
+                    if (l.Font.Size > 40)
+                    {
+                        flag = false;
+                    }
+                    else if (l.Font.Size < 27)
+                    {
+                        flag = true;
+                    }
+                    if (flag)
+                    {
+                        l.Font = new Font(l.Font.FontFamily, l.Font.Size + 1);
+                    }
+                    else
+                    {
+                        l.Font = new Font(l.Font.FontFamily, l.Font.Size - 1);
+                    }
+
                     LabelColorAnimation(l, l.BackColor);
                 }
             }
@@ -452,10 +467,10 @@ namespace WinForms.Forms
                 timerAnimation.Stop();
             }
 
-            
+
         }
 
-        private void LabelColorAnimation(Label l ,Color color)
+        private void LabelColorAnimation(Label l, Color color)
         {
             l.BackColor = Color.FromArgb(R * 10, color);
         }
