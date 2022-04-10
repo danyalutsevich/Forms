@@ -16,11 +16,11 @@ namespace WinForms.Forms
         private List<Label> labels;
         private Label[][] labels2D { get; set; }
         private int TimeMS { get; set; }
-        private List<AnimData> LabelsToAnimate { get; set; }
+        private List<Label> LabelsToAnimate { get; set; }
 
         public _2048Form(Random random)
         {
-            LabelsToAnimate = new List<AnimData>();
+            LabelsToAnimate = new List<Label>();
             labels = new List<Label>();
             this.random = random;
             TimeMS = 0;
@@ -85,7 +85,7 @@ namespace WinForms.Forms
                 {
                     var index = random.Next(empty.Count);
                     empty[index].Text = "2";
-                    LabelsToAnimate.Add(new AnimData(empty[index], Color.FromArgb(160, 160, 160)));
+                    LabelsToAnimate.Add(empty[index]);
                     R = 0;
                     timerAnimation.Start();
                 }
@@ -93,8 +93,7 @@ namespace WinForms.Forms
                 {
                     var index = random.Next(empty.Count);
                     empty[index].Text = "4";
-                    LabelsToAnimate.Add(new AnimData(empty[index], Color.FromArgb(160, 160, 160)));
-                    //{ l = empty[index], FromColor = Color.FromArgb(160, 160, 160) });
+                    LabelsToAnimate.Add(empty[index]);
                 }
             }
         }
@@ -209,11 +208,7 @@ namespace WinForms.Forms
                             if (labels2D[y][x].Text == labels2D[y + 1][x].Text)
                             {
                                 labels2D[y + 1][x].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
-                                LabelsToAnimate.Add(new AnimData(labels2D[y + 1][x], labels2D[y][x].BackColor));
-                                //{
-                                //    l = labels2D[y + 1][x],
-                                //    FromColor = labels2D[y][x].BackColor
-                                //});
+                                LabelsToAnimate.Add(labels2D[y + 1][x]);
                                 labels2D[y][x].Text = "";
                             }
                         }
@@ -243,12 +238,7 @@ namespace WinForms.Forms
                             if (labels2D[y][x].Text == labels2D[y - 1][x].Text)
                             {
                                 labels2D[y - 1][x].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
-                                LabelsToAnimate.Add(new AnimData(labels2D[y - 1][x], labels2D[y][x].BackColor));
-                                //{
-                                //    l = labels2D[y - 1][x],
-                                //    FromColor = labels2D[y][x].BackColor
-                                //});
-
+                                LabelsToAnimate.Add(labels2D[y - 1][x]);
                                 labels2D[y][x].Text = "";
                             }
                         }
@@ -277,13 +267,7 @@ namespace WinForms.Forms
                             if (labels2D[y][x].Text == labels2D[y][x - 1].Text)
                             {
                                 labels2D[y][x - 1].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
-
-                                LabelsToAnimate.Add(new AnimData(labels2D[y][x - 1], labels2D[y][x].BackColor));
-                                //{
-                                //    l = labels2D[y][x - 1],
-                                //    FromColor = labels2D[y][x].BackColor
-                                //});
-
+                                LabelsToAnimate.Add(labels2D[y][x - 1]);
                                 labels2D[y][x].Text = "";
                             }
                         }
@@ -313,13 +297,7 @@ namespace WinForms.Forms
                             if (labels2D[y][x].Text == labels2D[y][x + 1].Text)
                             {
                                 labels2D[y][x + 1].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
-
-                                LabelsToAnimate.Add(new AnimData(labels2D[y][x + 1], labels2D[y][x].BackColor));
-                                //{
-                                //    l = labels2D[y][x + 1],
-                                //    FromColor = labels2D[y][x].BackColor
-                                //});
-
+                                LabelsToAnimate.Add(labels2D[y][x + 1]);
                                 labels2D[y][x].Text = "";
                             }
                         }
@@ -373,6 +351,17 @@ namespace WinForms.Forms
         private Point mouseUp;
         private Point mouseDown;
         private bool IsMouseDown = false;
+        private bool IsMouseEnter = false;
+
+        private void _2048Form_MouseEnter(object sender, EventArgs e)
+        {
+            IsMouseEnter = true;
+        }
+
+        private void _2048Form_MouseLeave(object sender, EventArgs e)
+        {
+            IsMouseEnter=false;
+        }
 
         private void _2048Form_MouseDown(object sender, MouseEventArgs e)
         {
@@ -383,13 +372,15 @@ namespace WinForms.Forms
 
         private void _2048Form_MouseUp(object sender, MouseEventArgs e)
         {
-            if (IsMouseDown)
+            if (IsMouseDown&&IsMouseEnter)
             {
+
                 mouseUp.X = e.X;
                 mouseUp.Y = e.Y;
                 SensorMove();
                 AddCell();
                 ColorLabels();
+
                 IsMouseDown = false;
             }
         }
@@ -451,36 +442,37 @@ namespace WinForms.Forms
         private void timerAnimation_Tick(object sender, EventArgs e)
         {
 
-            foreach (var animData in LabelsToAnimate)
+            foreach (var l in LabelsToAnimate)
             {
-                if (animData.l.Text == "2")
+                if (l.Text == "2")
                 {
-                    LabelColorAnimation(animData, animData.l.BackColor);
+                    LabelColorAnimation(l, l.BackColor);
                 }
                 else
                 {
-                    if (animData.l.Font.Size > 40)
+                    if (l.Font.Size > 40)
                     {
                         flag = false;
                     }
-                    else if (animData.l.Font.Size < 27)
+                    else if (l.Font.Size < 27)
                     {
                         flag = true;
                     }
                     if (flag)
                     {
-                        animData.l.Font = new Font(animData.l.Font.FontFamily, animData.l.Font.Size + 1);
+                        l.Font = new Font(l.Font.FontFamily, l.Font.Size + 1);
                     }
                     else
                     {
-                        animData.l.Font = new Font(animData.l.Font.FontFamily, animData.l.Font.Size - 1);
+                        l.Font = new Font(l.Font.FontFamily, l.Font.Size - 1);
                     }
-                    LabelColorAnimation(animData, animData.l.BackColor);
+
+                    LabelColorAnimation(l, l.BackColor);
                 }
             }
 
             R++;
-            LabelsToAnimate = LabelsToAnimate.Where(i => i.l.BackColor.A < 250).ToList();
+            LabelsToAnimate = LabelsToAnimate.Where(i => i.BackColor.A < 250).ToList();
 
 
             if (R > 25)
@@ -491,52 +483,16 @@ namespace WinForms.Forms
 
         }
 
-        private void LabelColorAnimation(AnimData animData, Color color)
+        private void LabelColorAnimation(Label l, Color color)
         {
-            //animData.l.BackColor = Color.FromArgb(R * 10, color);
-          
-
-                animData.l.BackColor = animData.colors[R/10];
-          
+            l.BackColor = Color.FromArgb(R * 10, color);
         }
 
+        
     }
-
     class AnimData
     {
 
-        public Label l;
-        public Color FromColor;
-        public Color ToColor;
-        public List<Color> colors;
-        public int CurrtntColor = 0;
-
-        public AnimData(Label l, Color fromColor)
-        {
-            this.l = l;
-            this.FromColor = fromColor;
-
-            ToColor = l.BackColor;
-            colors = new List<Color>();
-
-
-            //for (int i = 0; i < 25; i++)
-            //{
-            //    var rAverage =  (int)((FromColor.R - ToColor.R) * i / 25);
-            //    var gAverage = (int)((FromColor.G - ToColor.G) * i / 25);
-            //    var bAverage =  (int)((FromColor.B - ToColor.B) * i / 25);
-            //    colors.Add(Color.FromArgb(rAverage, gAverage, bAverage));
-            //}
-
-            for (int i = 0; i < 25; i++)
-            {
-                var rAverage =  (int)((ToColor.R - FromColor.R) * i / 25);
-                var gAverage =  (int)((ToColor.G - FromColor.G) * i / 25);
-                var bAverage =  (int)((ToColor.B - FromColor.B) * i / 25);
-                colors.Add(Color.FromArgb(rAverage, gAverage, bAverage));
-            }
-
-        }
 
     }
 }

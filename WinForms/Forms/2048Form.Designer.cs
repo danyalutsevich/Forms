@@ -436,6 +436,8 @@
             this.Load += new System.EventHandler(this._2048Form_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this._2048Form_KeyDown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this._2048Form_MouseDown);
+            this.MouseEnter += new System.EventHandler(this._2048Form_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this._2048Form_MouseLeave);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this._2048Form_MouseUp);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
