@@ -19,8 +19,8 @@ namespace WinForms.Forms
         private Label[][] labels2D { get; set; }
         private int TimeMS { get; set; }
         private List<Label> LabelsToAnimate { get; set; }
-        private GameState state { get; set; }
-
+        private List<GameState> states { get; set; }
+        private long Record;
 
         public _2048Form(Random random)
         {
@@ -28,8 +28,10 @@ namespace WinForms.Forms
             labels = new List<Label>();
             this.random = random;
             TimeMS = 0;
-            state = new GameState();
 
+            Record = 0;
+
+            states = new List<GameState>();
 
             InitializeComponent();
         }
@@ -39,7 +41,7 @@ namespace WinForms.Forms
             return (int)(min2 + (value - min1) * (max2 - min2) / (max1 - min1));
         }
 
-        private void ColorLabels()
+        private void ColorCells()
         {
             foreach (var l in labels)
             {
@@ -118,36 +120,39 @@ namespace WinForms.Forms
             }
 
             labels2D = To2DArray();
-            LoadFieldFromFile();
-            //ClearGameField();
 
-            //this.ActiveControl = null;
+            if (!LoadFieldFromFile())
+            {
+                ClearGameField();
+                this.ActiveControl = null;
+                AddCell();
+            }
 
-            //AddCell();
-            ColorLabels();
+            ColorCells();
             timerClock.Start();
 
         }
 
-        private void LoadFieldFromFile()
+        private bool LoadFieldFromFile()
         {
-            string text;
-            using (var sr = new StreamReader("savegame.json"))
+            try
             {
-                text = sr.ReadToEnd();
-            }
+                string text;
 
-            GameState savedState = JsonSerializer.Deserialize<GameState>(text);
-
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
+                using (var sr = new StreamReader("savegame.json"))
                 {
-                    labels2D[i][j].Text = savedState.Field[i][j].ToString();
-
+                    text = sr.ReadToEnd();
                 }
 
+                GameState state = JsonSerializer.Deserialize<GameState>(text);
+
+                SetState(state);
             }
+            catch
+            {
+                return false;
+            }
+            return true;
 
         }
 
@@ -157,7 +162,7 @@ namespace WinForms.Forms
             labelR.Text = hScrollBarR.Value.ToString();
             labelG.Text = hScrollBarG.Value.ToString();
             labelB.Text = hScrollBarB.Value.ToString();
-            ColorLabels();
+            ColorCells();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -195,8 +200,8 @@ namespace WinForms.Forms
 
         private GameState GetState()
         {
-
             var tempState = new GameState();
+            tempState.Record = this.Record;
 
             for (int i = 0; i < labels2D.Length; i++)
             {
@@ -215,11 +220,31 @@ namespace WinForms.Forms
             return tempState;
         }
 
+        private void SetState(GameState state)
+        {
+            try
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (state.Field[i][j] > 0)
+                        {
+                            labels2D[i][j].Text = state.Field[i][j].ToString();
+                        }
+                        else
+                        {
+                            labels2D[i][j].Text = "";
+                        }
+                    }
+                }
+            }
+            catch { }
+
+        }
+
         private void _2048Form_KeyDown(object sender, KeyEventArgs e)
         {
-
-            state = GetState();
-
             MoveCells(e.KeyData);
         }
 
@@ -241,6 +266,7 @@ namespace WinForms.Forms
             // Right  0 0
             // Left   3 3
 
+            states.Add(GetState());
 
             if (key == Keys.Down || key == Keys.S)
             {
@@ -262,7 +288,9 @@ namespace WinForms.Forms
 
                             if (labels2D[y][x].Text == labels2D[y + 1][x].Text)
                             {
-                                labels2D[y + 1][x].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
+                                var value = Convert.ToInt32(labels2D[y][x].Text) * 2;
+                                Record += value;
+                                labels2D[y + 1][x].Text = value.ToString();
                                 LabelsToAnimate.Add(labels2D[y + 1][x]);
                                 labels2D[y][x].Text = "";
                             }
@@ -292,7 +320,9 @@ namespace WinForms.Forms
 
                             if (labels2D[y][x].Text == labels2D[y - 1][x].Text)
                             {
-                                labels2D[y - 1][x].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
+                                var value = Convert.ToInt32(labels2D[y][x].Text) * 2;
+                                Record += value;
+                                labels2D[y - 1][x].Text = value.ToString();
                                 LabelsToAnimate.Add(labels2D[y - 1][x]);
                                 labels2D[y][x].Text = "";
                             }
@@ -321,7 +351,9 @@ namespace WinForms.Forms
 
                             if (labels2D[y][x].Text == labels2D[y][x - 1].Text)
                             {
-                                labels2D[y][x - 1].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
+                                var value = Convert.ToInt32(labels2D[y][x].Text) * 2;
+                                Record += value;
+                                labels2D[y][x - 1].Text = value.ToString();
                                 LabelsToAnimate.Add(labels2D[y][x - 1]);
                                 labels2D[y][x].Text = "";
                             }
@@ -351,7 +383,9 @@ namespace WinForms.Forms
 
                             if (labels2D[y][x].Text == labels2D[y][x + 1].Text)
                             {
-                                labels2D[y][x + 1].Text = (Convert.ToInt32(labels2D[y][x].Text) * 2).ToString();
+                                var value = Convert.ToInt32(labels2D[y][x].Text) * 2;
+                                Record += value;
+                                labels2D[y][x + 1].Text = value.ToString();
                                 LabelsToAnimate.Add(labels2D[y][x + 1]);
                                 labels2D[y][x].Text = "";
                             }
@@ -367,24 +401,25 @@ namespace WinForms.Forms
             if (key == Keys.Down || key == Keys.S)
             {
                 AddCell();
-                ColorLabels();
+                ColorCells();
             }
             else if (key == Keys.Up || key == Keys.W)
             {
                 AddCell();
-                ColorLabels();
+                ColorCells();
             }
             else if (key == Keys.Left || key == Keys.A)
             {
                 AddCell();
-                ColorLabels();
+                ColorCells();
             }
             else if (key == Keys.Right || key == Keys.D)
             {
                 AddCell();
-                ColorLabels();
+                ColorCells();
             }
 
+            labelRecord.Text = Record.ToString();
 
         }
 
@@ -434,7 +469,7 @@ namespace WinForms.Forms
                 mouseUp.Y = e.Y;
                 SensorMove();
                 AddCell();
-                ColorLabels();
+                ColorCells();
 
                 IsMouseDown = false;
             }
@@ -473,68 +508,64 @@ namespace WinForms.Forms
             }
         }
 
-
         private void timer1_Tick(object sender, EventArgs e)
         {
 
             TimeMS += timerClock.Interval;
             var ts = TimeSpan.FromMilliseconds(TimeMS);
 
-
             labelTimer.Text = $"{ts.Minutes}:{ts.Seconds}:{ts.Milliseconds}";
-
-
         }
 
         public int R = 0;
         public int G = 0;
         public int B = 0;
 
-        private bool flag = false;
-
-
+        private bool FontAnimationflag = false;
 
         private void timerAnimation_Tick(object sender, EventArgs e)
         {
-
-            foreach (var l in LabelsToAnimate)
+            if (animateToolStripMenuItem.Checked)
             {
-                if (l.Text == "2")
+                foreach (var l in LabelsToAnimate)
                 {
-                    LabelColorAnimation(l, l.BackColor);
-                }
-                else
-                {
-                    if (l.Font.Size > 40)
+                    if (l.Text == "2")
                     {
-                        flag = false;
-                    }
-                    else if (l.Font.Size < 27)
-                    {
-                        flag = true;
-                    }
-                    if (flag)
-                    {
-                        l.Font = new Font(l.Font.FontFamily, l.Font.Size + 1);
+                        LabelColorAnimation(l, l.BackColor);
                     }
                     else
                     {
-                        l.Font = new Font(l.Font.FontFamily, l.Font.Size - 1);
+                        if (l.Font.Size > 40)
+                        {
+                            FontAnimationflag = false;
+                        }
+                        else if (l.Font.Size < 27)
+                        {
+                            FontAnimationflag = true;
+                        }
+                        if (FontAnimationflag)
+                        {
+                            l.Font = new Font(l.Font.FontFamily, l.Font.Size + 1);
+                        }
+                        else
+                        {
+                            l.Font = new Font(l.Font.FontFamily, l.Font.Size - 1);
+                        }
+
+                        LabelColorAnimation(l, l.BackColor);
                     }
-
-                    LabelColorAnimation(l, l.BackColor);
                 }
+
+                R++;
+                LabelsToAnimate = LabelsToAnimate.Where(i => i.BackColor.A < 250).ToList();
+
+
+                if (R > 25)
+                {
+                    timerAnimation.Stop();
+                }
+
             }
-
-            R++;
-            LabelsToAnimate = LabelsToAnimate.Where(i => i.BackColor.A < 250).ToList();
-
-
-            if (R > 25)
-            {
-                timerAnimation.Stop();
-            }
-
 
         }
 
@@ -561,10 +592,12 @@ namespace WinForms.Forms
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-        }
-        private void gameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+            if (states.Count > 0)
+            {
+                SetState(states[states.Count - 1]);
+                states.RemoveAt(states.Count - 1);
+                ColorCells();
+            }
 
         }
 
@@ -591,8 +624,6 @@ namespace WinForms.Forms
 
             saveFileDialog1.FileName = "savegame.json";
 
-            state = GetState();
-
             if (DialogResult.OK == saveFileDialog1.ShowDialog())
             {
                 MessageBox.Show(saveFileDialog1.FileName);
@@ -600,19 +631,42 @@ namespace WinForms.Forms
 
             using (var sw = new StreamWriter(saveFileDialog1.FileName))
             {
-                sw.Write(JsonSerializer.Serialize(state));
+                sw.Write(JsonSerializer.Serialize(GetState()));
             }
 
 
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearGameField();
+            AddCell();
+            ColorCells();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This is clone of famous game 2048");
+        }
+
+        private void rulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Find the rules in google");
+        }
+
+        private void recordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Record.ToString());
         }
     }
 
     class GameState
     {
         public int[][] Field { get; set; }
-
+        public long Record;
         public GameState()
         {
+            Record = 0;
             Field = new int[4][];
             for (int i = 0; i < Field.Length; i++)
             {
