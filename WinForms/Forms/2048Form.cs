@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,6 +19,8 @@ namespace WinForms.Forms
         private Label[][] labels2D { get; set; }
         private int TimeMS { get; set; }
         private List<Label> LabelsToAnimate { get; set; }
+        private GameState state { get; set; }
+
 
         public _2048Form(Random random)
         {
@@ -24,6 +28,9 @@ namespace WinForms.Forms
             labels = new List<Label>();
             this.random = random;
             TimeMS = 0;
+            state = new GameState();
+
+
             InitializeComponent();
         }
 
@@ -111,14 +118,36 @@ namespace WinForms.Forms
             }
 
             labels2D = To2DArray();
-            ClearGameField();
+            LoadFieldFromFile();
+            //ClearGameField();
 
-            this.ActiveControl = null;
+            //this.ActiveControl = null;
 
-            AddCell();
+            //AddCell();
             ColorLabels();
             timerClock.Start();
-            panel1.ForeColor = this.ForeColor;
+
+        }
+
+        private void LoadFieldFromFile()
+        {
+            string text;
+            using (var sr = new StreamReader("savegame.json"))
+            {
+                text = sr.ReadToEnd();
+            }
+
+            GameState savedState = JsonSerializer.Deserialize<GameState>(text);
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    labels2D[i][j].Text = savedState.Field[i][j].ToString();
+
+                }
+
+            }
 
         }
 
@@ -164,8 +193,33 @@ namespace WinForms.Forms
             return l;
         }
 
+        private GameState GetState()
+        {
+
+            var tempState = new GameState();
+
+            for (int i = 0; i < labels2D.Length; i++)
+            {
+                for (int j = 0; j < labels2D[i].Length; j++)
+                {
+                    try
+                    {
+                        tempState.Field[i][j] = Convert.ToInt32(labels2D[i][j].Text);
+                    }
+                    catch
+                    {
+                        tempState.Field[i][j] = 0;
+                    }
+                }
+            }
+            return tempState;
+        }
+
         private void _2048Form_KeyDown(object sender, KeyEventArgs e)
         {
+
+            state = GetState();
+
             MoveCells(e.KeyData);
         }
 
@@ -186,6 +240,7 @@ namespace WinForms.Forms
             //        y x
             // Right  0 0
             // Left   3 3
+
 
             if (key == Keys.Down || key == Keys.S)
             {
@@ -360,7 +415,7 @@ namespace WinForms.Forms
 
         private void _2048Form_MouseLeave(object sender, EventArgs e)
         {
-            IsMouseEnter=false;
+            IsMouseEnter = false;
         }
 
         private void _2048Form_MouseDown(object sender, MouseEventArgs e)
@@ -372,7 +427,7 @@ namespace WinForms.Forms
 
         private void _2048Form_MouseUp(object sender, MouseEventArgs e)
         {
-            if (IsMouseDown&&IsMouseEnter)
+            if (IsMouseDown && IsMouseEnter)
             {
 
                 mouseUp.X = e.X;
@@ -488,8 +543,93 @@ namespace WinForms.Forms
             l.BackColor = Color.FromArgb(R * 10, color);
         }
 
-        
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Do you want to leave?", "Confirm", MessageBoxButtons.YesNo);
+
+            if (res == DialogResult.Yes)
+            {
+                Close();
+            }
+
+        }
+
+        private void topmostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.TopMost = topmostToolStripMenuItem.Checked;
+        }
+
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void gameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            openFileDialog1.InitialDirectory = Application.StartupPath;
+
+            openFileDialog1.FileName = "savegame.json";
+
+            openFileDialog1.Filter = "Json|*.json|All Files|*.*";
+
+            if (DialogResult.OK == openFileDialog1.ShowDialog())
+            {
+                MessageBox.Show(openFileDialog1.FileName);
+            }
+
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            saveFileDialog1.InitialDirectory = Application.StartupPath;
+
+            saveFileDialog1.FileName = "savegame.json";
+
+            state = GetState();
+
+            if (DialogResult.OK == saveFileDialog1.ShowDialog())
+            {
+                MessageBox.Show(saveFileDialog1.FileName);
+            }
+
+            using (var sw = new StreamWriter(saveFileDialog1.FileName))
+            {
+                sw.Write(JsonSerializer.Serialize(state));
+            }
+
+
+        }
     }
+
+    class GameState
+    {
+        public int[][] Field { get; set; }
+
+        public GameState()
+        {
+            Field = new int[4][];
+            for (int i = 0; i < Field.Length; i++)
+            {
+                Field[i] = new int[4];
+            }
+        }
+    }
+
+    class Interpolator
+    {
+        public static int Linear(int from, int to, int percent)
+        {
+            return from + (to - from) * percent / 100;
+        }
+    }
+
+
     class AnimData
     {
 
