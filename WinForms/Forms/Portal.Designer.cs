@@ -33,6 +33,7 @@
             this.Calculator = new System.Windows.Forms.LinkLabel();
             this.ProgressLink = new System.Windows.Forms.LinkLabel();
             this.linkLabel2048 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // Intro
@@ -83,11 +84,24 @@
             this.linkLabel2048.Text = "2048";
             this.linkLabel2048.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2048_LinkClicked);
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.linkLabel1.Location = new System.Drawing.Point(12, 185);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(60, 25);
+            this.linkLabel1.TabIndex = 0;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "GDI";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // Portal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(384, 450);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.linkLabel2048);
             this.Controls.Add(this.ProgressLink);
             this.Controls.Add(this.Calculator);
@@ -106,5 +120,6 @@
         private System.Windows.Forms.LinkLabel Calculator;
         private System.Windows.Forms.LinkLabel ProgressLink;
         private System.Windows.Forms.LinkLabel linkLabel2048;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
