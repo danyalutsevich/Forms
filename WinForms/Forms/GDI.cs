@@ -199,7 +199,6 @@ namespace WinForms.Forms
 
         class Ball
         {
-
             public int X { get; set; }
             public int Y { get; set; }
             public int W { get; set; }
@@ -207,14 +206,11 @@ namespace WinForms.Forms
             public int Vx { get; set; }
             public int Vy { get; set; }
 
-
             Brush clearBrush = new SolidBrush(Color.White);
             Brush ballBrush = new SolidBrush(Color.Aqua);
 
             Pen clearPen = new Pen(Color.White);
             Pen ballPen = new Pen(Color.Aqua);
-
-          
 
             public void Move()
             {
