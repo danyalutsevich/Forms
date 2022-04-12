@@ -116,20 +116,51 @@ namespace WinForms.Forms
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Random random = new Random();
-            Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            int w = 3000;
+            int h = 3000;
 
-            for (int i = 0; i < pictureBox1.Width; i++)
+            Bitmap bmp = new Bitmap(w, h);
+
+
+            for (int i = 0; i < w; i++)
             {
-                for (int j = 0; j < pictureBox1.Height; j++)
+                for (int j = 0; j < h; j++)
                 {
                     bmp.SetPixel(i, j, Color.FromArgb(random.Next(255), random.Next(255), random.Next(255)));
                 }
             }
-            bmp.Save("bmp.png", ImageFormat.Png);
+
+            var graphics = this.CreateGraphics();
+
+            graphics.DrawImage(bmp, 0, 0);
+
+            EncoderParameters eps = new();
+            EncoderParameter ep = new(System.Drawing.Imaging.Encoder.Compression,(long)EncoderValue.CompressionLZW);
+
+            eps.Param[0] = ep;
+
+            ImageCodecInfo iCi = GetEncoderInfo("image/tiff");
+
+
+            bmp.Save("bmp.tiff",iCi, eps);
+
             pictureBox1.Image = bmp;
         }
 
-        public static readonly object locker;
+        private static ImageCodecInfo GetEncoderInfo(String mimeType)
+        {
+            int j;
+            ImageCodecInfo[] encoders;
+            encoders = ImageCodecInfo.GetImageEncoders();
+            for (j = 0; j < encoders.Length; ++j)
+            {
+                if (encoders[j].MimeType == mimeType)
+                {
+                    return encoders[j];
+                }
+            }
+            return null;
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -183,10 +214,7 @@ namespace WinForms.Forms
             Pen clearPen = new Pen(Color.White);
             Pen ballPen = new Pen(Color.Aqua);
 
-            public Ball()
-            {
-
-            }
+          
 
             public void Move()
             {
