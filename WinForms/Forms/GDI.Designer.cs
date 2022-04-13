@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.timerAddBall = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,6 +81,12 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "time";
             // 
+            // timerAddBall
+            // 
+            this.timerAddBall.Enabled = true;
+            this.timerAddBall.Interval = 3000;
+            this.timerAddBall.Tick += new System.EventHandler(this.timerAddBall_Tick);
+            // 
             // GDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -112,5 +119,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Timer timerAddBall;
     }
 }

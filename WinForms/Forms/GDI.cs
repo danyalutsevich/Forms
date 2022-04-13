@@ -76,8 +76,9 @@ namespace WinForms.Forms
         Stopwatch timer;
 
         public static GDI clone;
-
         public static Random rand;
+
+        public bool Stop = false;
 
         public GDI(Random random)
         {
@@ -98,30 +99,26 @@ namespace WinForms.Forms
                 X = Width / 2
             };
 
-
-
-
             balls = new List<Ball>();
 
-            int ballsAmount = rand.Next(30)+100;
+            int ballsAmount = rand.Next(30);
 
             for (int i = 0; i < ballsAmount; i++)
             {
                 balls.Add(new Ball
                 {
-                    Y = rand.Next(clone.Height-50),
+                    Y = rand.Next(61,clone.Height - 50),
                     X = rand.Next(clone.Width),
                     W = 20,
                     H = 20,
-                    Vx = rand.Next(10),
-                    Vy = rand.Next(10),
+                    // Vertical speed can't be less then 3,
+                    // Prevent constantly moving balls
+                    Vx = rand.Next(3,10),
+                    Vy = rand.Next(3,10),
 
 
                 });
             }
-
-
-
 
         }
 
@@ -199,8 +196,14 @@ namespace WinForms.Forms
 
         private void GDI_Paint(object sender, PaintEventArgs e)
         {
+
             foreach (var ball in balls)
             {
+                if (!Stop)
+                {
+                    ball.Move();
+                }
+
                 ball.PaintBall(e);
             }
 
@@ -220,13 +223,13 @@ namespace WinForms.Forms
             foreach (var ball in balls)
             {
 
-                if (ball.Y >= rocket.Y+rocket.H)
+                if (ball.Y >= rocket.Y + rocket.H)
                 {
                     toRemove = ball;
                 }
 
-                else if (ball.Y + ball.H >=  rocket.Y &&
-                     ball.Y + ball.H <= rocket.Y+rocket.H)
+                else if (ball.Y + ball.H >= rocket.Y &&
+                     ball.Y + ball.H <= rocket.Y + rocket.H)
                 {
                     if (ball.X + ball.W / 2 >= rocket.X &&
                         ball.X + ball.W / 2 <= rocket.X + rocket.W)
@@ -245,13 +248,17 @@ namespace WinForms.Forms
                 losed++;
                 balls.Remove(toRemove);
             }
+            if (balls.Count <= 0)
+            {
+                MessageBox.Show("Game Over");
+                timerAddBall.Stop();
+            }
 
             var time = TimeSpan.FromMilliseconds(timer.ElapsedMilliseconds);
 
-            label1.Text=score.ToString();
-            label2.Text=losed.ToString();
-            label3.Text =$"{time.Hours}:{time.Minutes}:{time.Seconds}";
-
+            label1.Text = score.ToString();
+            label2.Text = losed.ToString();
+            label3.Text = $"{time.Hours}:{time.Minutes}:{time.Seconds}";
         }
 
         static RocketDirection rocketDirection;
@@ -267,6 +274,18 @@ namespace WinForms.Forms
             else if (e.KeyCode == Keys.Right)
             {
                 rocketDirection = RocketDirection.Right;
+            }
+            if (e.KeyCode == Keys.Space)
+            {
+                if (Stop)
+                {
+                    timerAddBall.Start();
+                }
+                else
+                {
+                    timerAddBall.Stop();
+                }
+                Stop = !Stop;
             }
         }
 
@@ -290,6 +309,19 @@ namespace WinForms.Forms
             mouseCoord = e.Location;
         }
 
+        private void timerAddBall_Tick(object sender, EventArgs e)
+        {
+            //Adding new Ball every Tick
+            balls.Add(new Ball
+            {
+                Y = rand.Next(clone.Height / 2),
+                X = rand.Next(clone.Width / 2),
+                W = 20,
+                H = 20,
+                Vx = rand.Next(10),
+                Vy = rand.Next(10),
+            });
+        }
 
         class Ball
         {
@@ -328,12 +360,10 @@ namespace WinForms.Forms
                     Vx = -Vx;
                 }
 
-                if (Y < 0)
+                if (Y < 60)
                 {
                     Vy = -Vy;
                 }
-
-
 
                 if (X + W >= GDI.clone.Width)
                 {
@@ -346,7 +376,7 @@ namespace WinForms.Forms
             {
                 //e.Graphics.FillEllipse(clearBrush, X, Y, H, W);
                 //e.Graphics.DrawEllipse(clearPen, X, Y, H, W);
-                Move();
+                //Move();
                 e.Graphics.FillEllipse(ballBrush, X, Y, H, W);
                 e.Graphics.DrawEllipse(ballPen, X, Y, H, W);
             }
@@ -357,11 +387,8 @@ namespace WinForms.Forms
             None,
             Left,
             Right,
-
         }
-
-
-
+        
         class Rocket
         {
             public int X { get; set; }
@@ -379,7 +406,7 @@ namespace WinForms.Forms
             {
                 Brush = new SolidBrush(Color.Green);
                 CrearBrush = new SolidBrush(Color.White);
-                Y=440;
+                Y = 440;
             }
 
             public void MouseMove(Graphics g)
