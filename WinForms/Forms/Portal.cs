@@ -45,5 +45,10 @@ namespace WinForms.Forms
         {
             Program.Container.Resolve<Forms.GDI>().ShowDialog();
         }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Program.Container.Resolve<Forms.ProcessForm>().ShowDialog();
+        }
     }
 }

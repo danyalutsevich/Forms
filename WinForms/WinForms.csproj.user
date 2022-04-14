@@ -16,6 +16,9 @@
     <Compile Update="Forms\Portal.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\ProcessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\ProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>

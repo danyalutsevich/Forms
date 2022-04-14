@@ -107,6 +107,7 @@ namespace WinForms.Forms
             {
                 balls.Add(new Ball
                 {
+                    //61 so it wont cover score panel
                     Y = rand.Next(61,clone.Height - 50),
                     X = rand.Next(clone.Width),
                     W = 20,
@@ -346,8 +347,6 @@ namespace WinForms.Forms
 
                 clearPen = new Pen(Color.White);
                 ballPen = new Pen(color);
-
-
             }
 
             public void Move()
@@ -416,7 +415,8 @@ namespace WinForms.Forms
                     g.FillRectangle(CrearBrush, rect);
                     rect.Width = W;
                     rect.Height = H;
-                    rect.X = mouseCoord.X;
+                    X = mouseCoord.X;
+                    rect.X = X;
                     rect.Y = Y;
                     g.FillRectangle(Brush, rect);
 
@@ -429,12 +429,14 @@ namespace WinForms.Forms
 
                 if (rocketDirection == RocketDirection.Left)
                 {
-                    rect.X -= V;
+                    X -= V;
+                    rect.X = X;
 
                 }
                 else if (rocketDirection == RocketDirection.Right)
                 {
-                    rect.X += V;
+                    X += V;
+                    rect.X = X;
                 }
 
 

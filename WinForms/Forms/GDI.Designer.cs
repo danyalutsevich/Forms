@@ -84,7 +84,7 @@
             // timerAddBall
             // 
             this.timerAddBall.Enabled = true;
-            this.timerAddBall.Interval = 3000;
+            this.timerAddBall.Interval = 25;
             this.timerAddBall.Tick += new System.EventHandler(this.timerAddBall_Tick);
             // 
             // GDI
