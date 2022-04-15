@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelNotepad = new System.Windows.Forms.Label();
-            this.labelChrome = new System.Windows.Forms.Label();
             this.buttonNotepadStart = new System.Windows.Forms.Button();
-            this.buttonChromeStart = new System.Windows.Forms.Button();
             this.buttonNotepadStop = new System.Windows.Forms.Button();
-            this.buttonChromeStop = new System.Windows.Forms.Button();
             this.buttonLog = new System.Windows.Forms.Button();
+            this.treeViewProcesses = new System.Windows.Forms.TreeView();
+            this.buttonRefresh = new System.Windows.Forms.Button();
+            this.timerRefresh = new System.Windows.Forms.Timer(this.components);
+            this.linkLabelITStep = new System.Windows.Forms.LinkLabel();
+            this.linkLabelOdITStep = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // labelNotepad
@@ -46,15 +49,6 @@
             this.labelNotepad.TabIndex = 0;
             this.labelNotepad.Text = "Notepad";
             // 
-            // labelChrome
-            // 
-            this.labelChrome.AutoSize = true;
-            this.labelChrome.Location = new System.Drawing.Point(12, 73);
-            this.labelChrome.Name = "labelChrome";
-            this.labelChrome.Size = new System.Drawing.Size(50, 15);
-            this.labelChrome.TabIndex = 1;
-            this.labelChrome.Text = "Chrome";
-            // 
             // buttonNotepadStart
             // 
             this.buttonNotepadStart.Location = new System.Drawing.Point(71, 33);
@@ -64,16 +58,6 @@
             this.buttonNotepadStart.Text = "Start";
             this.buttonNotepadStart.UseVisualStyleBackColor = true;
             this.buttonNotepadStart.Click += new System.EventHandler(this.buttonNotepadStart_Click);
-            // 
-            // buttonChromeStart
-            // 
-            this.buttonChromeStart.Location = new System.Drawing.Point(71, 69);
-            this.buttonChromeStart.Name = "buttonChromeStart";
-            this.buttonChromeStart.Size = new System.Drawing.Size(75, 23);
-            this.buttonChromeStart.TabIndex = 2;
-            this.buttonChromeStart.Text = "Start";
-            this.buttonChromeStart.UseVisualStyleBackColor = true;
-            this.buttonChromeStart.Click += new System.EventHandler(this.buttonChromeStart_Click);
             // 
             // buttonNotepadStop
             // 
@@ -85,16 +69,6 @@
             this.buttonNotepadStop.UseVisualStyleBackColor = true;
             this.buttonNotepadStop.Click += new System.EventHandler(this.buttonNotepadStop_Click);
             // 
-            // buttonChromeStop
-            // 
-            this.buttonChromeStop.Location = new System.Drawing.Point(152, 69);
-            this.buttonChromeStop.Name = "buttonChromeStop";
-            this.buttonChromeStop.Size = new System.Drawing.Size(75, 23);
-            this.buttonChromeStop.TabIndex = 2;
-            this.buttonChromeStop.Text = "Start";
-            this.buttonChromeStop.UseVisualStyleBackColor = true;
-            this.buttonChromeStop.Click += new System.EventHandler(this.buttonChromeStart_Click);
-            // 
             // buttonLog
             // 
             this.buttonLog.Location = new System.Drawing.Point(233, 33);
@@ -105,17 +79,64 @@
             this.buttonLog.UseVisualStyleBackColor = true;
             this.buttonLog.Click += new System.EventHandler(this.buttonLog_Click);
             // 
+            // treeViewProcesses
+            // 
+            this.treeViewProcesses.Location = new System.Drawing.Point(12, 157);
+            this.treeViewProcesses.Name = "treeViewProcesses";
+            this.treeViewProcesses.Size = new System.Drawing.Size(457, 399);
+            this.treeViewProcesses.TabIndex = 3;
+            this.treeViewProcesses.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewProcesses_NodeMouseDoubleClick);
+            // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Location = new System.Drawing.Point(12, 128);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(75, 23);
+            this.buttonRefresh.TabIndex = 4;
+            this.buttonRefresh.Text = "Refresh";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+            // 
+            // timerRefresh
+            // 
+            this.timerRefresh.Enabled = true;
+            this.timerRefresh.Interval = 5000;
+            this.timerRefresh.Tick += new System.EventHandler(this.timerRefresh_Tick);
+            // 
+            // linkLabelITStep
+            // 
+            this.linkLabelITStep.AutoSize = true;
+            this.linkLabelITStep.Location = new System.Drawing.Point(71, 77);
+            this.linkLabelITStep.Name = "linkLabelITStep";
+            this.linkLabelITStep.Size = new System.Drawing.Size(57, 15);
+            this.linkLabelITStep.TabIndex = 5;
+            this.linkLabelITStep.TabStop = true;
+            this.linkLabelITStep.Text = "itstep.org";
+            this.linkLabelITStep.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelITStep_LinkClicked);
+            // 
+            // linkLabelOdITStep
+            // 
+            this.linkLabelOdITStep.AutoSize = true;
+            this.linkLabelOdITStep.Location = new System.Drawing.Point(152, 77);
+            this.linkLabelOdITStep.Name = "linkLabelOdITStep";
+            this.linkLabelOdITStep.Size = new System.Drawing.Size(74, 15);
+            this.linkLabelOdITStep.TabIndex = 5;
+            this.linkLabelOdITStep.TabStop = true;
+            this.linkLabelOdITStep.Text = "od.itstep.org";
+            this.linkLabelOdITStep.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelOdITStep_LinkClicked);
+            // 
             // ProcessForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(481, 568);
-            this.Controls.Add(this.buttonChromeStop);
+            this.Controls.Add(this.linkLabelOdITStep);
+            this.Controls.Add(this.linkLabelITStep);
+            this.Controls.Add(this.buttonRefresh);
+            this.Controls.Add(this.treeViewProcesses);
             this.Controls.Add(this.buttonLog);
             this.Controls.Add(this.buttonNotepadStop);
-            this.Controls.Add(this.buttonChromeStart);
             this.Controls.Add(this.buttonNotepadStart);
-            this.Controls.Add(this.labelChrome);
             this.Controls.Add(this.labelNotepad);
             this.Name = "ProcessForm";
             this.Text = "ProcessForm";
@@ -128,11 +149,13 @@
         #endregion
 
         private System.Windows.Forms.Label labelNotepad;
-        private System.Windows.Forms.Label labelChrome;
         private System.Windows.Forms.Button buttonNotepadStart;
-        private System.Windows.Forms.Button buttonChromeStart;
         private System.Windows.Forms.Button buttonNotepadStop;
-        private System.Windows.Forms.Button buttonChromeStop;
         private System.Windows.Forms.Button buttonLog;
+        private System.Windows.Forms.TreeView treeViewProcesses;
+        private System.Windows.Forms.Button buttonRefresh;
+        private System.Windows.Forms.Timer timerRefresh;
+        private System.Windows.Forms.LinkLabel linkLabelITStep;
+        private System.Windows.Forms.LinkLabel linkLabelOdITStep;
     }
 }
