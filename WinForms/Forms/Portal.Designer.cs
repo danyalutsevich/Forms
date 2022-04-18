@@ -35,13 +35,14 @@
             this.linkLabel2048 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabelMVPatterns = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // Intro
             // 
             this.Intro.AutoSize = true;
             this.Intro.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Intro.Location = new System.Drawing.Point(12, 41);
+            this.Intro.Location = new System.Drawing.Point(-15, 18);
             this.Intro.Name = "Intro";
             this.Intro.Size = new System.Drawing.Size(88, 25);
             this.Intro.TabIndex = 0;
@@ -53,7 +54,7 @@
             // 
             this.Calculator.AutoSize = true;
             this.Calculator.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Calculator.Location = new System.Drawing.Point(12, 78);
+            this.Calculator.Location = new System.Drawing.Point(177, 53);
             this.Calculator.Name = "Calculator";
             this.Calculator.Size = new System.Drawing.Size(174, 25);
             this.Calculator.TabIndex = 0;
@@ -65,7 +66,7 @@
             // 
             this.ProgressLink.AutoSize = true;
             this.ProgressLink.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ProgressLink.Location = new System.Drawing.Point(12, 113);
+            this.ProgressLink.Location = new System.Drawing.Point(106, 132);
             this.ProgressLink.Name = "ProgressLink";
             this.ProgressLink.Size = new System.Drawing.Size(157, 25);
             this.ProgressLink.TabIndex = 0;
@@ -76,8 +77,9 @@
             // linkLabel2048
             // 
             this.linkLabel2048.AutoSize = true;
+            this.linkLabel2048.BackColor = System.Drawing.Color.Transparent;
             this.linkLabel2048.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.linkLabel2048.Location = new System.Drawing.Point(12, 149);
+            this.linkLabel2048.Location = new System.Drawing.Point(229, 132);
             this.linkLabel2048.Name = "linkLabel2048";
             this.linkLabel2048.Size = new System.Drawing.Size(91, 25);
             this.linkLabel2048.TabIndex = 0;
@@ -89,7 +91,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.linkLabel1.Location = new System.Drawing.Point(12, 185);
+            this.linkLabel1.Location = new System.Drawing.Point(312, 370);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(60, 25);
             this.linkLabel1.TabIndex = 0;
@@ -101,7 +103,7 @@
             // 
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.linkLabel2.Location = new System.Drawing.Point(12, 222);
+            this.linkLabel2.Location = new System.Drawing.Point(39, 181);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(142, 25);
             this.linkLabel2.TabIndex = 0;
@@ -109,11 +111,24 @@
             this.linkLabel2.Text = "Process";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
+            // linkLabelMVPatterns
+            // 
+            this.linkLabelMVPatterns.AutoSize = true;
+            this.linkLabelMVPatterns.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.linkLabelMVPatterns.Location = new System.Drawing.Point(12, 229);
+            this.linkLabelMVPatterns.Name = "linkLabelMVPatterns";
+            this.linkLabelMVPatterns.Size = new System.Drawing.Size(203, 25);
+            this.linkLabelMVPatterns.TabIndex = 0;
+            this.linkLabelMVPatterns.TabStop = true;
+            this.linkLabelMVPatterns.Text = "MVPatterns";
+            this.linkLabelMVPatterns.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMVPatterns_LinkClicked);
+            // 
             // Portal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 450);
+            this.Controls.Add(this.linkLabelMVPatterns);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.linkLabel2048);
@@ -136,5 +151,6 @@
         private System.Windows.Forms.LinkLabel linkLabel2048;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabelMVPatterns;
     }
 }
