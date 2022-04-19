@@ -43,6 +43,11 @@ namespace WinForms.Forms
                 "это означает что изменения отслеживаются и обновляется представление и наоборот все изменения " +
                 "в представленных данных сразу попадает в модель " +
                 "Такая связь в WinForms изменения их свойств сразу отображаются в форме ";
+
+          
+
+
+
         }
 
         private void textBoxMVPView_Click(object sender, EventArgs e)
@@ -57,13 +62,13 @@ namespace WinForms.Forms
 
         }
 
-        private DemoModel model = new DemoModel("demo.txt");      // Model
+        private DemoModel model = new DemoModel("demo.txt");                         // Model
+        private DemoSecondModel secondModel = new DemoSecondModel("demo2.txt");      // Second Model
 
         private void tabPageDemo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabPageDemo.SelectedIndex == 1)
             {
-
                 textBoxMVPView.Text = "";
                 int[] randoms = Program.Container.Resolve<RndModel>().getRandoms(4);
 
@@ -74,12 +79,22 @@ namespace WinForms.Forms
             }
             else if (tabPageDemo.SelectedIndex == 3)
             {
+
+                // first model
                 model.changeEvent += OnModelChanged;        // Event handler
                 richTextBox1.TextChanged += (s, e) =>          // Model -> View
                 {
                     model.Content = richTextBox1.Text;
                 };
                 richTextBox1.Text = model.Content;          // View init
+
+                // second model
+                secondModel.SecondModelChangeEvent += OnSecondModelChanged;
+                richTextBoxSecondModel.TextChanged += (s, e) =>
+                {
+                    secondModel.SetContent(richTextBoxSecondModel.Text);
+                };
+                richTextBoxSecondModel.Text = secondModel.GetContent();
             }
         }
 
@@ -89,9 +104,55 @@ namespace WinForms.Forms
             labelSymbolsCMD.Text = model.Content.Length.ToString();
         }
 
+        private void OnSecondModelChanged()
+        {
+            labelSymbolsSecondModel.Text = secondModel.GetContent().Length.ToString();
+        }
     }
 
     delegate void ModelChangeEvent();
+
+    class DemoSecondModel
+    {
+
+        private string content;
+        private string fileName;
+
+        public DemoSecondModel(string fileName)
+        {
+            this.fileName = fileName;
+
+            if (File.Exists(fileName))
+            {
+                using (var sr = new StreamReader(fileName))
+                {
+                    content = sr.ReadToEnd();
+                }
+            }
+            else
+            {
+                content = String.Empty;
+            }
+        }
+
+        public void SetContent(string content)
+        {
+            this.content = content;
+            using (var sw = new StreamWriter(fileName))
+            {
+               sw.WriteAsync(content);
+            }
+            SecondModelChangeEvent.Invoke();
+        }
+
+        public string GetContent()
+        {
+            return content;
+        }
+
+        public event ModelChangeEvent SecondModelChangeEvent;
+
+    }
 
     class DemoModel
     {
@@ -106,7 +167,6 @@ namespace WinForms.Forms
             if (File.Exists(fileName))
             {
                 content = File.ReadAllText(fileName);
-
             }
             else
             {
@@ -129,6 +189,7 @@ namespace WinForms.Forms
                 changeEvent.Invoke();
             }
         }
+
         public event ModelChangeEvent changeEvent;
     }
 

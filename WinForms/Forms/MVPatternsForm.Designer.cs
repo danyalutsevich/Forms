@@ -67,7 +67,10 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBoxViewModel = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.richTextBoxSecondModel = new System.Windows.Forms.RichTextBox();
+            this.labelSymbolsSecondModel = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.labelSymbolsCMD = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -496,7 +499,10 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.richTextBoxSecondModel);
+            this.tabPage1.Controls.Add(this.labelSymbolsSecondModel);
             this.tabPage1.Controls.Add(this.richTextBox1);
+            this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.labelSymbolsCMD);
             this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
@@ -504,21 +510,47 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(391, 368);
             this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "MVVM Demo";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // richTextBoxSecondModel
+            // 
+            this.richTextBoxSecondModel.Location = new System.Drawing.Point(6, 234);
+            this.richTextBoxSecondModel.Name = "richTextBoxSecondModel";
+            this.richTextBoxSecondModel.Size = new System.Drawing.Size(211, 128);
+            this.richTextBoxSecondModel.TabIndex = 1;
+            this.richTextBoxSecondModel.Text = "";
+            // 
+            // labelSymbolsSecondModel
+            // 
+            this.labelSymbolsSecondModel.AutoSize = true;
+            this.labelSymbolsSecondModel.Location = new System.Drawing.Point(64, 206);
+            this.labelSymbolsSecondModel.Name = "labelSymbolsSecondModel";
+            this.labelSymbolsSecondModel.Size = new System.Drawing.Size(13, 15);
+            this.labelSymbolsSecondModel.TabIndex = 0;
+            this.labelSymbolsSecondModel.Text = "0";
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(3, 53);
+            this.richTextBox1.Location = new System.Drawing.Point(6, 54);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(211, 128);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 206);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(52, 15);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Symbols";
+            // 
             // labelSymbolsCMD
             // 
             this.labelSymbolsCMD.AutoSize = true;
-            this.labelSymbolsCMD.Location = new System.Drawing.Point(277, 36);
+            this.labelSymbolsCMD.Location = new System.Drawing.Point(64, 17);
             this.labelSymbolsCMD.Name = "labelSymbolsCMD";
             this.labelSymbolsCMD.Size = new System.Drawing.Size(13, 15);
             this.labelSymbolsCMD.TabIndex = 0;
@@ -527,7 +559,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(219, 36);
+            this.label11.Location = new System.Drawing.Point(6, 17);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(52, 15);
             this.label11.TabIndex = 0;
@@ -679,5 +711,8 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label labelSymbolsCMD;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.RichTextBox richTextBoxSecondModel;
+        private System.Windows.Forms.Label labelSymbolsSecondModel;
+        private System.Windows.Forms.Label label12;
     }
 }
