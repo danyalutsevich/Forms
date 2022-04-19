@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MVPatternsForm));
-            this.tabControlPatterns = new System.Windows.Forms.TabControl();
+            this.tabPageDemo = new System.Windows.Forms.TabControl();
             this.tabPageMVC = new System.Windows.Forms.TabPage();
             this.textBoxMVC = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -41,6 +41,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPageMVP = new System.Windows.Forms.TabPage();
+            this.textBoxMVPView = new System.Windows.Forms.TextBox();
             this.labelMVP = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
@@ -53,14 +54,29 @@
             this.label9 = new System.Windows.Forms.Label();
             this.labelViewMVP = new System.Windows.Forms.Label();
             this.tabPageMVVM = new System.Windows.Forms.TabPage();
+            this.textBoxMVVM = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxViewModel = new System.Windows.Forms.TextBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.labelSymbolsCMD = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBoxView = new System.Windows.Forms.TextBox();
             this.textBoxModel = new System.Windows.Forms.TextBox();
             this.labelView = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxMVPView = new System.Windows.Forms.TextBox();
-            this.tabControlPatterns.SuspendLayout();
+            this.tabPageDemo.SuspendLayout();
             this.tabPageMVC.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -70,19 +86,28 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.tabPageMVVM.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControlPatterns
+            // tabPageDemo
             // 
-            this.tabControlPatterns.Controls.Add(this.tabPageMVC);
-            this.tabControlPatterns.Controls.Add(this.tabPageMVP);
-            this.tabControlPatterns.Controls.Add(this.tabPageMVVM);
-            this.tabControlPatterns.Location = new System.Drawing.Point(12, 173);
-            this.tabControlPatterns.Name = "tabControlPatterns";
-            this.tabControlPatterns.SelectedIndex = 0;
-            this.tabControlPatterns.Size = new System.Drawing.Size(399, 396);
-            this.tabControlPatterns.TabIndex = 0;
+            this.tabPageDemo.Controls.Add(this.tabPageMVC);
+            this.tabPageDemo.Controls.Add(this.tabPageMVP);
+            this.tabPageDemo.Controls.Add(this.tabPageMVVM);
+            this.tabPageDemo.Controls.Add(this.tabPage1);
+            this.tabPageDemo.Location = new System.Drawing.Point(12, 173);
+            this.tabPageDemo.Name = "tabPageDemo";
+            this.tabPageDemo.SelectedIndex = 0;
+            this.tabPageDemo.Size = new System.Drawing.Size(399, 396);
+            this.tabPageDemo.TabIndex = 0;
+            this.tabPageDemo.SelectedIndexChanged += new System.EventHandler(this.tabPageDemo_SelectedIndexChanged);
             // 
             // tabPageMVC
             // 
@@ -214,6 +239,16 @@
             this.tabPageMVP.Text = "MVP";
             this.tabPageMVP.UseVisualStyleBackColor = true;
             // 
+            // textBoxMVPView
+            // 
+            this.textBoxMVPView.Location = new System.Drawing.Point(201, 251);
+            this.textBoxMVPView.Multiline = true;
+            this.textBoxMVPView.Name = "textBoxMVPView";
+            this.textBoxMVPView.ReadOnly = true;
+            this.textBoxMVPView.Size = new System.Drawing.Size(184, 114);
+            this.textBoxMVPView.TabIndex = 3;
+            this.textBoxMVPView.Click += new System.EventHandler(this.textBoxMVPView_Click);
+            // 
             // labelMVP
             // 
             this.labelMVP.AutoSize = true;
@@ -319,6 +354,18 @@
             // 
             // tabPageMVVM
             // 
+            this.tabPageMVVM.Controls.Add(this.textBoxMVVM);
+            this.tabPageMVVM.Controls.Add(this.textBox5);
+            this.tabPageMVVM.Controls.Add(this.textBox2);
+            this.tabPageMVVM.Controls.Add(this.textBox4);
+            this.tabPageMVVM.Controls.Add(this.pictureBox11);
+            this.tabPageMVVM.Controls.Add(this.textBox1);
+            this.tabPageMVVM.Controls.Add(this.pictureBox10);
+            this.tabPageMVVM.Controls.Add(this.pictureBox8);
+            this.tabPageMVVM.Controls.Add(this.pictureBox9);
+            this.tabPageMVVM.Controls.Add(this.pictureBox7);
+            this.tabPageMVVM.Controls.Add(this.textBox3);
+            this.tabPageMVVM.Controls.Add(this.textBoxViewModel);
             this.tabPageMVVM.Location = new System.Drawing.Point(4, 24);
             this.tabPageMVVM.Name = "tabPageMVVM";
             this.tabPageMVVM.Padding = new System.Windows.Forms.Padding(3);
@@ -326,6 +373,165 @@
             this.tabPageMVVM.TabIndex = 2;
             this.tabPageMVVM.Text = "MVVM";
             this.tabPageMVVM.UseVisualStyleBackColor = true;
+            // 
+            // textBoxMVVM
+            // 
+            this.textBoxMVVM.Location = new System.Drawing.Point(-4, 165);
+            this.textBoxMVVM.Multiline = true;
+            this.textBoxMVVM.Name = "textBoxMVVM";
+            this.textBoxMVVM.ReadOnly = true;
+            this.textBoxMVVM.Size = new System.Drawing.Size(399, 207);
+            this.textBoxMVVM.TabIndex = 1;
+            this.textBoxMVVM.Text = "View B";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(59, 105);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(51, 20);
+            this.textBox5.TabIndex = 1;
+            this.textBox5.Text = "View B";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(59, 36);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(51, 20);
+            this.textBox2.TabIndex = 1;
+            this.textBox2.Text = "View A";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(317, 105);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(58, 20);
+            this.textBox4.TabIndex = 1;
+            this.textBox4.Text = "Model 2";
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
+            this.pictureBox11.Location = new System.Drawing.Point(-4, 62);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(61, 39);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox11.TabIndex = 1;
+            this.pictureBox11.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(317, 36);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(50, 20);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "Model 1";
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(257, 98);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(54, 33);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox10.TabIndex = 1;
+            this.pictureBox10.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(257, 29);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(54, 33);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox8.TabIndex = 1;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(116, 98);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(54, 33);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 1;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(116, 29);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(54, 33);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 1;
+            this.pictureBox7.TabStop = false;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(176, 105);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(75, 20);
+            this.textBox3.TabIndex = 1;
+            this.textBox3.Text = "ViewModel";
+            // 
+            // textBoxViewModel
+            // 
+            this.textBoxViewModel.Location = new System.Drawing.Point(176, 36);
+            this.textBoxViewModel.Multiline = true;
+            this.textBoxViewModel.Name = "textBoxViewModel";
+            this.textBoxViewModel.ReadOnly = true;
+            this.textBoxViewModel.Size = new System.Drawing.Size(75, 20);
+            this.textBoxViewModel.TabIndex = 1;
+            this.textBoxViewModel.Text = "ViewModel";
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.richTextBox1);
+            this.tabPage1.Controls.Add(this.labelSymbolsCMD);
+            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(391, 368);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(3, 53);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(211, 128);
+            this.richTextBox1.TabIndex = 1;
+            this.richTextBox1.Text = "";
+            // 
+            // labelSymbolsCMD
+            // 
+            this.labelSymbolsCMD.AutoSize = true;
+            this.labelSymbolsCMD.Location = new System.Drawing.Point(277, 36);
+            this.labelSymbolsCMD.Name = "labelSymbolsCMD";
+            this.labelSymbolsCMD.Size = new System.Drawing.Size(13, 15);
+            this.labelSymbolsCMD.TabIndex = 0;
+            this.labelSymbolsCMD.Text = "0";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(219, 36);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(52, 15);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Symbols";
             // 
             // groupBox1
             // 
@@ -387,27 +593,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Model";
             // 
-            // textBoxMVPView
-            // 
-            this.textBoxMVPView.Location = new System.Drawing.Point(201, 251);
-            this.textBoxMVPView.Multiline = true;
-            this.textBoxMVPView.Name = "textBoxMVPView";
-            this.textBoxMVPView.ReadOnly = true;
-            this.textBoxMVPView.Size = new System.Drawing.Size(184, 114);
-            this.textBoxMVPView.TabIndex = 3;
-            this.textBoxMVPView.Click += new System.EventHandler(this.textBoxMVPView_Click);
-            // 
             // MVPatternsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(423, 581);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.tabControlPatterns);
+            this.Controls.Add(this.tabPageDemo);
             this.Name = "MVPatternsForm";
             this.Text = "MVPatternsForm";
             this.Load += new System.EventHandler(this.MVPatternsForm_Load);
-            this.tabControlPatterns.ResumeLayout(false);
+            this.tabPageDemo.ResumeLayout(false);
             this.tabPageMVC.ResumeLayout(false);
             this.tabPageMVC.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -419,6 +615,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.tabPageMVVM.ResumeLayout(false);
+            this.tabPageMVVM.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -427,7 +632,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControlPatterns;
+        private System.Windows.Forms.TabControl tabPageDemo;
         private System.Windows.Forms.TabPage tabPageMVC;
         private System.Windows.Forms.TabPage tabPageMVP;
         private System.Windows.Forms.TabPage tabPageMVVM;
@@ -458,5 +663,21 @@
         private System.Windows.Forms.Label labelMVP;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.TextBox textBoxMVPView;
+        private System.Windows.Forms.TextBox textBoxMVVM;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxViewModel;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label labelSymbolsCMD;
+        private System.Windows.Forms.Label label11;
     }
 }
