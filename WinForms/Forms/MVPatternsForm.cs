@@ -43,11 +43,6 @@ namespace WinForms.Forms
                 "это означает что изменения отслеживаются и обновляется представление и наоборот все изменения " +
                 "в представленных данных сразу попадает в модель " +
                 "Такая связь в WinForms изменения их свойств сразу отображаются в форме ";
-
-          
-
-
-
         }
 
         private void textBoxMVPView_Click(object sender, EventArgs e)
@@ -89,12 +84,14 @@ namespace WinForms.Forms
                 richTextBox1.Text = model.Content;          // View init
 
                 // second model
-                secondModel.SecondModelChangeEvent += OnSecondModelChanged;
+                secondModel.SecondModelChangeEvent += OnSecondModelChanged;  //
                 richTextBoxSecondModel.TextChanged += (s, e) =>
                 {
-                    secondModel.SetContent(richTextBoxSecondModel.Text);
+                    // setting new content (model) that will appear in view
+                    secondModel.SetContent(richTextBoxSecondModel.Text);  
                 };
-                richTextBoxSecondModel.Text = secondModel.GetContent();
+
+                richTextBoxSecondModel.Text = secondModel.GetContent();  // updating view
             }
         }
 
@@ -115,8 +112,8 @@ namespace WinForms.Forms
     class DemoSecondModel
     {
 
-        private string content;
-        private string fileName;
+        private string content;   // Model
+        private string fileName;  // Model storage
 
         public DemoSecondModel(string fileName)
         {
@@ -137,12 +134,12 @@ namespace WinForms.Forms
 
         public void SetContent(string content)
         {
-            this.content = content;
+            this.content = content;  // setting a new model
             using (var sw = new StreamWriter(fileName))
             {
-               sw.WriteAsync(content);
+               sw.Write(content);
             }
-            SecondModelChangeEvent.Invoke();
+            SecondModelChangeEvent?.Invoke();   // update view
         }
 
         public string GetContent()
@@ -150,7 +147,7 @@ namespace WinForms.Forms
             return content;
         }
 
-        public event ModelChangeEvent SecondModelChangeEvent;
+        public event ModelChangeEvent? SecondModelChangeEvent;
 
     }
 
@@ -193,7 +190,7 @@ namespace WinForms.Forms
         public event ModelChangeEvent changeEvent;
     }
 
-    //пример модели - поставщик данных
+    // model example - data provider
     class RndModel
     {
         private Random rand;
