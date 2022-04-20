@@ -162,6 +162,9 @@ namespace WinForms.Forms
             return (int)(min2 + (value - min1) * (max2 - min2) / (max1 - min1));
         }
 
+        int PrevX;
+        int PrevY;
+
         private IntPtr MSHookProc(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (nCode >= 0 && wParam == (IntPtr)WM_LBUTTONDOWN)
@@ -173,16 +176,36 @@ namespace WinForms.Forms
 
                 listBoxMS.Items.Add("click");
             }
+
             if (nCode >= 0 && wParam == (IntPtr)WM_MOUSEMOVE)
             {
 
                 MsHookStruct msHookStruct = Marshal.PtrToStructure<MsHookStruct>(lParam);
 
-                int x = Map(msHookStruct.point.x, 0, 1919, 0, pictureBox1.Width);
-                int y = Map(msHookStruct.point.y, 0, 1079, 0, pictureBox1.Height);
+                labelMsX.Text = msHookStruct.point.x.ToString();
+                labelMsY.Text = msHookStruct.point.y.ToString();
 
-                bitmap.SetPixel(x, y,Color.Black);
-                pictureBox1.Image = bitmap;
+                int x = Map(msHookStruct.point.x, 0, 1918, 0, pictureBox1.Width);
+                int y = Map(msHookStruct.point.y, 0, 1078, 0, pictureBox1.Height);
+
+                if (x >= 0 && x < bitmap.Width && y >= 0 && y < bitmap.Height)
+                {
+                    // I Prefer this over lines 
+                    // Draws dots but saves when out of bounds and saves when stop button clicked
+                    bitmap.SetPixel(x, y, Color.DarkCyan);
+                    pictureBox1.Image = bitmap;
+
+
+                    // Draw lines but cleans when out of bounds
+
+                    //var g = pictureBox1.CreateGraphics();
+                    //g.DrawLine(new Pen(Color.Black), PrevX, PrevY, x, y);
+                    //bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height, g);
+
+                    //PrevX = x;
+                    //PrevY = y;
+                }
+
             }
 
             if (nCode >= 0 && wParam == (IntPtr)WM_RBUTTONDOWN)
@@ -234,6 +257,7 @@ namespace WinForms.Forms
                 Unhook(hMSHook);
                 msGCHandle.Free();
                 tabPageMouse.Text = "Mouse hook inactive";
+                bitmap.Save("mouseMoves.png");
             }
         }
         #endregion
