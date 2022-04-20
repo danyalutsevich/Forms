@@ -55,5 +55,10 @@ namespace WinForms.Forms
         {
             Program.Container.Resolve<Forms.MVPatternsForm>().ShowDialog();
         }
+
+        private void linkLabelHooks_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Program.Container.Resolve<Forms.HookForms>().ShowDialog();
+        }
     }
 }

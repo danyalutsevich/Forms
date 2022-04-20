@@ -36,6 +36,7 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabelMVPatterns = new System.Windows.Forms.LinkLabel();
+            this.linkLabelHooks = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // Intro
@@ -123,11 +124,24 @@
             this.linkLabelMVPatterns.Text = "MVPatterns";
             this.linkLabelMVPatterns.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMVPatterns_LinkClicked);
             // 
+            // linkLabelHooks
+            // 
+            this.linkLabelHooks.AutoSize = true;
+            this.linkLabelHooks.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.linkLabelHooks.Location = new System.Drawing.Point(209, 194);
+            this.linkLabelHooks.Name = "linkLabelHooks";
+            this.linkLabelHooks.Size = new System.Drawing.Size(111, 25);
+            this.linkLabelHooks.TabIndex = 0;
+            this.linkLabelHooks.TabStop = true;
+            this.linkLabelHooks.Text = "Hooks";
+            this.linkLabelHooks.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelHooks_LinkClicked);
+            // 
             // Portal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 450);
+            this.Controls.Add(this.linkLabelHooks);
             this.Controls.Add(this.linkLabelMVPatterns);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.linkLabel1);
@@ -152,5 +166,6 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabelMVPatterns;
+        private System.Windows.Forms.LinkLabel linkLabelHooks;
     }
 }
