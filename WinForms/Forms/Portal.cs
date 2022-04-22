@@ -60,5 +60,19 @@ namespace WinForms.Forms
         {
             Program.Container.Resolve<Forms.HookForms>().ShowDialog();
         }
+
+        private void linkLabelChipher_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide(); // Visible = false;
+            Program.Container.Resolve<Forms.FileCipher>().ShowDialog();
+            this.Show(); // Visible = true;
+        }
+        
+        private void linkLabelMandelbrot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+
+            
+        }
     }
 }

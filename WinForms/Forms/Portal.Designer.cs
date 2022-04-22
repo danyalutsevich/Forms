@@ -37,6 +37,8 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabelMVPatterns = new System.Windows.Forms.LinkLabel();
             this.linkLabelHooks = new System.Windows.Forms.LinkLabel();
+            this.linkLabelChipher = new System.Windows.Forms.LinkLabel();
+            this.linkLabelMandelbrot = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // Intro
@@ -136,12 +138,38 @@
             this.linkLabelHooks.Text = "Hooks";
             this.linkLabelHooks.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelHooks_LinkClicked);
             // 
+            // linkLabelChipher
+            // 
+            this.linkLabelChipher.AutoSize = true;
+            this.linkLabelChipher.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.linkLabelChipher.Location = new System.Drawing.Point(12, 275);
+            this.linkLabelChipher.Name = "linkLabelChipher";
+            this.linkLabelChipher.Size = new System.Drawing.Size(136, 25);
+            this.linkLabelChipher.TabIndex = 0;
+            this.linkLabelChipher.TabStop = true;
+            this.linkLabelChipher.Text = "Chipher";
+            this.linkLabelChipher.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelChipher_LinkClicked);
+            // 
+            // linkLabelMandelbrot
+            // 
+            this.linkLabelMandelbrot.AutoSize = true;
+            this.linkLabelMandelbrot.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.linkLabelMandelbrot.Location = new System.Drawing.Point(79, 317);
+            this.linkLabelMandelbrot.Name = "linkLabelMandelbrot";
+            this.linkLabelMandelbrot.Size = new System.Drawing.Size(254, 25);
+            this.linkLabelMandelbrot.TabIndex = 0;
+            this.linkLabelMandelbrot.TabStop = true;
+            this.linkLabelMandelbrot.Text = "Mabdelbrot Set";
+            this.linkLabelMandelbrot.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMandelbrot_LinkClicked);
+            // 
             // Portal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 450);
             this.Controls.Add(this.linkLabelHooks);
+            this.Controls.Add(this.linkLabelMandelbrot);
+            this.Controls.Add(this.linkLabelChipher);
             this.Controls.Add(this.linkLabelMVPatterns);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.linkLabel1);
@@ -167,5 +195,7 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabelMVPatterns;
         private System.Windows.Forms.LinkLabel linkLabelHooks;
+        private System.Windows.Forms.LinkLabel linkLabelChipher;
+        private System.Windows.Forms.LinkLabel linkLabelMandelbrot;
     }
 }
