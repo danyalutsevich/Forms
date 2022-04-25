@@ -26,8 +26,7 @@ namespace WinForms.Forms
         private void FileCipher_Load(object sender, EventArgs e)
         {
             textBoxPassword.PasswordChar = passwordChar;
-            var bytes = Encoding.Unicode.GetBytes("👁");
-            buttonShowPass.Text = Encoding.Convert(Encoding.Unicode,Encoding.ASCII,bytes,);
+            buttonShowPass.Text = "Show";
             progressBarEncription.Minimum = 0;
             progressBarEncription.Maximum = 100;
         }

@@ -105,9 +105,10 @@
             // 
             // textBoxPassword
             // 
+            this.textBoxPassword.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxPassword.Location = new System.Drawing.Point(94, 144);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(188, 23);
+            this.textBoxPassword.Size = new System.Drawing.Size(188, 22);
             this.textBoxPassword.TabIndex = 3;
             // 
             // label2
@@ -177,6 +178,7 @@
             // 
             // buttonShowPass
             // 
+            this.buttonShowPass.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonShowPass.Location = new System.Drawing.Point(288, 144);
             this.buttonShowPass.Name = "buttonShowPass";
             this.buttonShowPass.Size = new System.Drawing.Size(28, 23);
