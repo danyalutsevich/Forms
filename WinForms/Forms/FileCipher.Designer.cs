@@ -45,6 +45,7 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.progressBarEncription = new System.Windows.Forms.ProgressBar();
             this.buttonShowPass = new System.Windows.Forms.Button();
+            this.buttonCancelCipher = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -187,11 +188,22 @@
             this.buttonShowPass.UseVisualStyleBackColor = true;
             this.buttonShowPass.Click += new System.EventHandler(this.buttonShowPass_Click);
             // 
+            // buttonCancelCipher
+            // 
+            this.buttonCancelCipher.Location = new System.Drawing.Point(327, 202);
+            this.buttonCancelCipher.Name = "buttonCancelCipher";
+            this.buttonCancelCipher.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancelCipher.TabIndex = 6;
+            this.buttonCancelCipher.Text = "Cancel";
+            this.buttonCancelCipher.UseVisualStyleBackColor = true;
+            this.buttonCancelCipher.Click += new System.EventHandler(this.buttonCancelCipher_Click);
+            // 
             // FileCipher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(414, 585);
+            this.Controls.Add(this.buttonCancelCipher);
             this.Controls.Add(this.buttonShowPass);
             this.Controls.Add(this.progressBarEncription);
             this.Controls.Add(this.textBoxPassword);
@@ -234,5 +246,6 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ProgressBar progressBarEncription;
         private System.Windows.Forms.Button buttonShowPass;
+        private System.Windows.Forms.Button buttonCancelCipher;
     }
 }
