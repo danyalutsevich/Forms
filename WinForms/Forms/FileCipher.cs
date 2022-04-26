@@ -20,14 +20,16 @@ namespace WinForms.Forms
         private const char passwordChar = '●';
 
         CipherData cipherData;
-        CancellationTokenSource cts;    
-        
+        CancellationTokenSource cts;
+
         public FileCipher()
         {
+            InitializeComponent();
+            
             cipherData = new CipherData();
             cts = null;
-
-            InitializeComponent();
+            buttonCancelCipher.Enabled = false;
+            
         }
 
         private void FileCipher_Load(object sender, EventArgs e)
@@ -65,9 +67,13 @@ namespace WinForms.Forms
 
         private int symNum = 0;
         private long fileSize;
+        private bool cancel = false;
 
+        
         private void Cipher(object data)
         {
+            buttonCipher.Enabled = false;
+            buttonCancelCipher.Enabled = true;
 
             if (data is not ThreadData || data is null)
             {
@@ -77,27 +83,28 @@ namespace WinForms.Forms
             var threadData = data as ThreadData;
             // open source file for reading 
 
-            if (threadData.Data.sourceFile is null) { return; }
+            if (threadData.Data.SourceFile is null) { return; }
 
             try
             {
 
 
-                var source = threadData.Data.sourceFile;
-                
+                var source = threadData.Data.SourceFile;
+
                 string dest = source + ".ciphered";
                 fileSize = new FileInfo(source).Length;
-                if (threadData.Data.destinationFile == null)
+
+                if (threadData.Data.DestinationFile == null)
                 {
-                    dest = threadData.Data.destinationFile;
+                    dest = threadData.Data.DestinationFile;
                 }
 
-                if (threadData.Data.password == "" || threadData.Data.password is null)
+                if (threadData.Data.Password == "" || threadData.Data.Password is null)
                 {
                     throw new Exception("Enter a password");
                 }
 
-                using (var sr = new StreamReader(threadData.Data.sourceFile))
+                using (var sr = new StreamReader(threadData.Data.SourceFile))
                 {
                     // open destination file for writing 
                     using (var sw = new StreamWriter(dest))
@@ -107,13 +114,17 @@ namespace WinForms.Forms
                         {
                             // write the text to the destination file 
                             char symT = (char)sr.Read();
-                            char symP = threadData.Data.password[symNum % threadData.Data.password.Length];
+                            char symP = threadData.Data.Password[symNum % threadData.Data.Password.Length];
                             char symC = (char)(symT ^ symP);
                             sw.Write(symC);
 
-                            if (threadData.cts.IsCancellationRequested)
+                            if (cancel)
                             {
-                                throw new OperationCanceledException();
+                                if (DialogResult.Yes == MessageBox.Show("Quit cipher?", "Ciphering stoped", MessageBoxButtons.YesNo))
+                                {
+                                    throw new OperationCanceledException();
+                                }
+                                cancel = false;
                             }
 
                             //Thread.Sleep(100);
@@ -123,7 +134,7 @@ namespace WinForms.Forms
                     }
                 }
 
-                var res = MessageBox.Show("Open in Notepad?","Done",MessageBoxButtons.YesNo);
+                var res = MessageBox.Show("Open in Notepad?", "Done", MessageBoxButtons.YesNo);
 
                 if (res == DialogResult.Yes)
                 {
@@ -131,6 +142,9 @@ namespace WinForms.Forms
                 }
 
                 MessageBox.Show("Done");
+
+               
+
             }
             catch (IOException) // IO problem
             {
@@ -143,6 +157,15 @@ namespace WinForms.Forms
             catch (Exception ex) // other problem
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                labelDestinationFile.Text = "";
+                labelFileName.Text = "";
+                progressBarEncription.Value = 0;
+                textBoxPassword.Text = "";
+                buttonCipher.Enabled = true;
+                buttonCancelCipher.Enabled = false;
             }
         }
 
@@ -157,11 +180,11 @@ namespace WinForms.Forms
         private async void buttonCipher_Click(object sender, EventArgs e)
         {
 
-            cipherData.password = textBoxPassword.Text;
+            cipherData.Password = textBoxPassword.Text;
             cts = new CancellationTokenSource();
 
-            cipherData.destinationFile = saveFileDialog1.FileName;
-            cipherData.sourceFile = openFileDialog1.FileName;
+            cipherData.DestinationFile = saveFileDialog1.FileName;
+            cipherData.SourceFile = openFileDialog1.FileName;
 
             new Thread(Cipher).Start(new ThreadData
             {
@@ -217,6 +240,7 @@ namespace WinForms.Forms
 
         private void buttonCancelCipher_Click(object sender, EventArgs e)
         {
+            cancel = true;
             cts?.Cancel();
         }
 
@@ -251,9 +275,9 @@ namespace WinForms.Forms
 
     class CipherData
     {
-        public string password { get; set; }
-        public string sourceFile { get; set; }
-        public string destinationFile { get; set; }
+        public string? Password { get; set; }
+        public string? SourceFile { get; set; }
+        public string? DestinationFile { get; set; }
     }
 
 }
