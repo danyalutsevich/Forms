@@ -45,7 +45,7 @@
             // 
             this.Intro.AutoSize = true;
             this.Intro.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Intro.Location = new System.Drawing.Point(-15, 18);
+            this.Intro.Location = new System.Drawing.Point(-4, 9);
             this.Intro.Name = "Intro";
             this.Intro.Size = new System.Drawing.Size(88, 25);
             this.Intro.TabIndex = 0;
@@ -82,7 +82,7 @@
             this.linkLabel2048.AutoSize = true;
             this.linkLabel2048.BackColor = System.Drawing.Color.Transparent;
             this.linkLabel2048.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.linkLabel2048.Location = new System.Drawing.Point(229, 132);
+            this.linkLabel2048.Location = new System.Drawing.Point(229, 95);
             this.linkLabel2048.Name = "linkLabel2048";
             this.linkLabel2048.Size = new System.Drawing.Size(91, 25);
             this.linkLabel2048.TabIndex = 0;

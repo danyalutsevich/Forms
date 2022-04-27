@@ -22,6 +22,9 @@
     <Compile Update="Forms\HookForms.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\MandelbrotSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\MVPatternsForm.cs">
       <SubType>Form</SubType>
     </Compile>

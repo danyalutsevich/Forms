@@ -20,16 +20,16 @@ namespace WinForms.Forms
         private const char passwordChar = '●';
 
         CipherData cipherData;
-        CancellationTokenSource cts;
+        CancellationTokenSource? cts;
 
         public FileCipher()
         {
             InitializeComponent();
-            
+
             cipherData = new CipherData();
             cts = null;
             buttonCancelCipher.Enabled = false;
-            
+
         }
 
         private void FileCipher_Load(object sender, EventArgs e)
@@ -67,9 +67,7 @@ namespace WinForms.Forms
 
         private int symNum = 0;
         private long fileSize;
-        private bool cancel = false;
 
-        
         private void Cipher(object data)
         {
             buttonCipher.Enabled = false;
@@ -85,19 +83,18 @@ namespace WinForms.Forms
 
             if (threadData.Data.SourceFile is null) { return; }
 
+            var source = threadData.Data.SourceFile;
+            string dest = source + ".ciphered";
+
+            if (threadData.Data.DestinationFile == null)
+            {
+                dest = threadData.Data.DestinationFile;
+            }
+
             try
             {
 
-
-                var source = threadData.Data.SourceFile;
-
-                string dest = source + ".ciphered";
                 fileSize = new FileInfo(source).Length;
-
-                if (threadData.Data.DestinationFile == null)
-                {
-                    dest = threadData.Data.DestinationFile;
-                }
 
                 if (threadData.Data.Password == "" || threadData.Data.Password is null)
                 {
@@ -118,13 +115,17 @@ namespace WinForms.Forms
                             char symC = (char)(symT ^ symP);
                             sw.Write(symC);
 
-                            if (cancel)
+                            if (threadData.cts.IsCancellationRequested)
                             {
                                 if (DialogResult.Yes == MessageBox.Show("Quit cipher?", "Ciphering stoped", MessageBoxButtons.YesNo))
                                 {
-                                    throw new OperationCanceledException();
+                                    threadData.cts.ThrowIfCancellationRequested();
                                 }
-                                cancel = false;
+                                else
+                                {
+                                    cts = new CancellationTokenSource();
+                                    threadData.cts = cts.Token;
+                                }
                             }
 
                             //Thread.Sleep(100);
@@ -143,7 +144,7 @@ namespace WinForms.Forms
 
                 MessageBox.Show("Done");
 
-               
+
 
             }
             catch (IOException) // IO problem
@@ -153,6 +154,13 @@ namespace WinForms.Forms
             catch (OperationCanceledException) // cancellation
             {
                 MessageBox.Show("Operation was canceled");
+                // delete destination file
+                if (File.Exists(threadData.Data.DestinationFile))
+                {
+                    File.Delete(dest);
+                    MessageBox.Show("deleted");
+                }
+
             }
             catch (Exception ex) // other problem
             {
@@ -168,6 +176,8 @@ namespace WinForms.Forms
                 buttonCancelCipher.Enabled = false;
             }
         }
+
+       
 
         private void UpdateProgress()
         {
@@ -240,7 +250,6 @@ namespace WinForms.Forms
 
         private void buttonCancelCipher_Click(object sender, EventArgs e)
         {
-            cancel = true;
             cts?.Cancel();
         }
 

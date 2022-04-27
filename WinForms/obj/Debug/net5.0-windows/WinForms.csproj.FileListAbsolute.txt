@@ -32,3 +32,4 @@ C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinFor
 C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinForms.Forms.MVPatternsForm.resources
 C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinForms.Forms.HookForms.resources
 C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinForms.Forms.FileCipher.resources
+C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinForms.Forms.MandelbrotSetForm.resources

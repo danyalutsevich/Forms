@@ -70,9 +70,9 @@ namespace WinForms.Forms
         
         private void linkLabelMandelbrot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
-
-            
+            this.Hide();
+            Program.Container.Resolve<Forms.MandelbrotSetForm>().ShowDialog();
+            this.Show();
         }
     }
 }
