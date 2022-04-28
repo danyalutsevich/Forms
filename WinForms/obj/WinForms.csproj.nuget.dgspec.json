@@ -44,6 +44,10 @@
               "target": "Package",
               "version": "[4.7.15, )"
             },
+            "SixLabors.ImageSharp": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
             "Unity.NetCore": {
               "target": "Package",
               "version": "[4.0.3, )"

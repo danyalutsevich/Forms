@@ -38,6 +38,8 @@ namespace WinForms
             //Registration
             Container.RegisterInstance(logger);
             Container.RegisterInstance(new Random());
+            Container.RegisterType<Services.IRandom, Services.SimpleRandom>();
+
             //Creation of Portal via Container
             Application.Run(Container.Resolve<Forms.Portal>());
         }

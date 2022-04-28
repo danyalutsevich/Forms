@@ -35,6 +35,7 @@
             this.labelIterations = new System.Windows.Forms.Label();
             this.textBoxPow = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFractal)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,11 +110,22 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Pow";
             // 
+            // labelTime
+            // 
+            this.labelTime.AutoSize = true;
+            this.labelTime.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelTime.Location = new System.Drawing.Point(354, 470);
+            this.labelTime.Name = "labelTime";
+            this.labelTime.Size = new System.Drawing.Size(42, 14);
+            this.labelTime.TabIndex = 6;
+            this.labelTime.Text = "Time:";
+            // 
             // MandelbrotSetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 626);
+            this.Controls.Add(this.labelTime);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxPow);
             this.Controls.Add(this.labelIterations);
@@ -140,5 +152,6 @@
         private System.Windows.Forms.Label labelIterations;
         private System.Windows.Forms.TextBox textBoxPow;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelTime;
     }
 }

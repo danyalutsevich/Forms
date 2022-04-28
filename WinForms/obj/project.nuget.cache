@@ -1,11 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "MTduApjkT0xmOflzqrtOh5NxSfe/vtOzcd7TLJbMW5weNR+lCkJg1JcpmO62vy2Rsr8Ul5zwLIhCk3gVpYruGQ==",
+  "dgSpecHash": "3/IAtAdMI4hqGs8qTzhJK6Zz4hViIASuahgcDhsiVxkefLnpNPefofpHWCYcyKqlKyiPGK6ixOty8YCyjpo+dw==",
   "success": true,
   "projectFilePath": "C:\\Users\\luche\\source\\repos\\C#\\WinForms\\WinForms\\WinForms.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\luche\\.nuget\\packages\\commonservicelocator.netcore\\1.3.1\\commonservicelocator.netcore.1.3.1.nupkg.sha512",
+    "C:\\Users\\luche\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\luche\\.nuget\\packages\\nlog\\4.7.15\\nlog.4.7.15.nupkg.sha512",
+    "C:\\Users\\luche\\.nuget\\packages\\sixlabors.imagesharp\\2.1.1\\sixlabors.imagesharp.2.1.1.nupkg.sha512",
+    "C:\\Users\\luche\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\luche\\.nuget\\packages\\system.text.encoding.codepages\\5.0.0\\system.text.encoding.codepages.5.0.0.nupkg.sha512",
     "C:\\Users\\luche\\.nuget\\packages\\unity.netcore\\4.0.3\\unity.netcore.4.0.3.nupkg.sha512"
   ],
   "logs": []

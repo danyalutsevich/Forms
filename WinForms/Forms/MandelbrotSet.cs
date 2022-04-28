@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System.Diagnostics;
+using Microsoft.Practices.Unity;
+
+
 
 namespace WinForms.Forms
 {
@@ -25,12 +28,17 @@ namespace WinForms.Forms
             labelZoom.Text = "Zoom: " + Zoom.ToString();
             labelIterations.Text = "Iterations: " + MaxIterations.ToString();
             textBoxPow.Enabled = false;
+            Cx = (float)random.NextDouble();
+            Cy = (float)random.NextDouble();
+            labelCx.Text = Cx.ToString("0.000");
+            labelCy.Text = Cy.ToString("0.000");
+            Task.Run(() => { DrawWithZoom(Convert.ToInt32(textBoxPow.Text)); });
         }
-        
+
         private Color[] colors = new Color[]
         {
-            Color.FromArgb(0,0,0),
-            Color.FromArgb(66,30,15),
+            Color.FromArgb(0, 0, 0),
+            Color.FromArgb(66, 30, 15),
             Color.FromArgb(25, 7, 26),
             Color.FromArgb(9, 1, 47),
             Color.FromArgb(4, 4, 73),
@@ -59,6 +67,11 @@ namespace WinForms.Forms
 
         private Complex C;
 
+        [Dependency]
+        public Services.IRandom random { get; set; }
+
+        private Task currentTask = Task.Delay(0);
+
         private float Map(float value, float min1, float max1, float min2, float max2)
         {
             return (min2 + (value - min1) * (max2 - min2) / (max1 - min1));
@@ -67,13 +80,15 @@ namespace WinForms.Forms
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
-
         }
 
         private void Draw(int pow)
         {
             C = new Complex { Im = Cy, Re = Cx };
-
+            labelTime.Text = "Time: ";
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            
             for (int i = 0; i < pictureBoxFractal.Width; i++)
             {
                 for (int j = 0; j < pictureBoxFractal.Height; j++)
@@ -83,6 +98,8 @@ namespace WinForms.Forms
 
                 }
             }
+            
+            labelTime.Text = "Time: " + stopwatch.ElapsedMilliseconds.ToString();
 
             pictureBoxFractal.Image = bitmap;
         }
@@ -115,8 +132,11 @@ namespace WinForms.Forms
         {
             C = new Complex { Im = Cy, Re = Cx };
 
+            labelTime.Text = "Time: ";
+
             List<Task<int>> tasks = new List<Task<int>>();
 
+            var stopwatch = Stopwatch.StartNew();
             for (int i = 0; i < pictureBoxFractal.Width; i++)
             {
                 for (int j = 0; j < pictureBoxFractal.Height; j++)
@@ -137,6 +157,10 @@ namespace WinForms.Forms
 
                 }
             }
+
+            stopwatch.Stop();
+            labelTime.Text = "Time: " + stopwatch.ElapsedMilliseconds.ToString();
+
 
             pictureBoxFractal.Image = bitmap;
         }
@@ -177,6 +201,10 @@ namespace WinForms.Forms
         {
             C = new Complex { Im = Cy, Re = Cx };
 
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            labelTime.Text = "Time: ";
+
             for (int i = 0; i < pictureBoxFractal.Width; i++)
             {
                 for (int j = 0; j < pictureBoxFractal.Height; j++)
@@ -184,10 +212,16 @@ namespace WinForms.Forms
                     ThreadPool.QueueUserWorkItem(CalculateComplexWithPool, new Coord { x = i, y = j, pow = pow });
                 }
             }
+
             while (Process.GetCurrentProcess().Threads.Count > 15)
             {
                 Thread.Sleep(100);
             }
+
+            sw.Stop();
+            labelTime.Text = "Time: " + sw.ElapsedMilliseconds.ToString();
+
+
             pictureBoxFractal.Image = bitmap;
         }
 
@@ -223,11 +257,15 @@ namespace WinForms.Forms
             }
         }
 
+        int rendered = 0;
+        Stopwatch stopwatch = new Stopwatch();
+        
         private void DrawWithZoom(int pow)
         {
-
+            labelTime.Text = "Time: ";
             C = new Complex { Im = Cy, Re = Cx };
-
+            rendered = pictureBoxFractal.Width * pictureBoxFractal.Height;
+            stopwatch.Start();
             for (int i = 0; i < pictureBoxFractal.Width; i++)
             {
                 for (int j = 0; j < pictureBoxFractal.Height; j++)
@@ -247,8 +285,8 @@ namespace WinForms.Forms
             // calculate the point in the complex plane
             var Z = new Complex
             {
-                Im = Map(j, 0, pictureBoxFractal.Height, -2, 2) * Zoom+My,
-                Re = Map(i, 0, pictureBoxFractal.Width, -2, 2) * Zoom+Mx
+                Im = Map(j, 0, pictureBoxFractal.Height, -2, 2) * Zoom + My,
+                Re = Map(i, 0, pictureBoxFractal.Width, -2, 2) * Zoom + Mx
             };
 
             int n = 0;
@@ -259,6 +297,12 @@ namespace WinForms.Forms
                 Z = Z.Pow(pow) + C;
 
             } while (n < MaxIterations && Z.Abs < 4);
+
+            rendered--;
+            if (rendered == 0)
+            {
+                labelTime.Text = "Time: " + stopwatch.ElapsedMilliseconds.ToString();
+            }
 
             // set color of pixel
             var color = (int)Map(n, 0, MaxIterations, 0, colors.Length - 1);
@@ -285,7 +329,10 @@ namespace WinForms.Forms
                 labelCx.Text = "Cx: " + Cx.ToString("0.000");
                 labelCy.Text = "Cy: " + Cy.ToString("0.000");
 
-                Task.Run(() => { DrawWithZoom(Convert.ToInt32(textBoxPow.Text)); });
+                if (currentTask.IsCompleted)
+                {
+                    currentTask = Task.Run(() => { DrawWithZoom(Convert.ToInt32(textBoxPow.Text)); });
+                }
 
             }
         }
@@ -328,23 +375,25 @@ namespace WinForms.Forms
             {
                 Mx -= 0.01f;
             }
-
             else if (e.KeyCode == Keys.P)
             {
                 textBoxPow.Enabled = !textBoxPow.Enabled;
             }
-            else if(e.KeyCode == Keys.S)
+            else if (e.KeyCode == Keys.S)
             {
                 bitmap.Save("fractal.png");
             }
 
-            Task.Run(() => { DrawWithZoom(Convert.ToInt32(textBoxPow.Text)); });
+            if (currentTask.IsCompleted)
+            {
+                currentTask = Task.Run(() => { DrawWithZoom(Convert.ToInt32(textBoxPow.Text)); });
+            }
 
         }
 
         private void textBoxPow_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 textBoxPow.Enabled = false;
             }
