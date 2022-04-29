@@ -34,3 +34,6 @@ C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinFor
 C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinForms.Forms.FileCipher.resources
 C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinForms.Forms.MandelbrotSetForm.resources
 C:\Users\luche\source\repos\C#\WinForms\WinForms\bin\Debug\net5.0-windows\SixLabors.ImageSharp.dll
+C:\Users\luche\source\repos\C#\WinForms\WinForms\obj\Debug\net5.0-windows\WinForms.Forms.HashForm.resources
+C:\Users\luche\source\repos\C#\WinForms\WinForms\bin\Debug\net5.0-windows\Hasher.dll
+C:\Users\luche\source\repos\C#\WinForms\WinForms\bin\Debug\net5.0-windows\Hasher.pdb

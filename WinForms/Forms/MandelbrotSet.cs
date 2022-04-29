@@ -77,11 +77,6 @@ namespace WinForms.Forms
             return (min2 + (value - min1) * (max2 - min2) / (max1 - min1));
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Draw(int pow)
         {
             C = new Complex { Im = Cy, Re = Cx };

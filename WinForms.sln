@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31702.278
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForms", "WinForms\WinForms.csproj", "{84E375E0-6DE8-4DA2-A902-CC62CB34014F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinForms", "WinForms\WinForms.csproj", "{84E375E0-6DE8-4DA2-A902-CC62CB34014F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hasher", "Hasher\Hasher.csproj", "{157A895E-CD05-43C7-934E-0AD1E69036BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{84E375E0-6DE8-4DA2-A902-CC62CB34014F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84E375E0-6DE8-4DA2-A902-CC62CB34014F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84E375E0-6DE8-4DA2-A902-CC62CB34014F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{157A895E-CD05-43C7-934E-0AD1E69036BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{157A895E-CD05-43C7-934E-0AD1E69036BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{157A895E-CD05-43C7-934E-0AD1E69036BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{157A895E-CD05-43C7-934E-0AD1E69036BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

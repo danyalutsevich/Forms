@@ -19,6 +19,9 @@
     <Compile Update="Forms\GDI.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\HashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\HookForms.cs">
       <SubType>Form</SubType>
     </Compile>

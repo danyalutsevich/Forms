@@ -39,6 +39,7 @@
             this.linkLabelHooks = new System.Windows.Forms.LinkLabel();
             this.linkLabelChipher = new System.Windows.Forms.LinkLabel();
             this.linkLabelMandelbrot = new System.Windows.Forms.LinkLabel();
+            this.linkLabelHash = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // Intro
@@ -162,12 +163,25 @@
             this.linkLabelMandelbrot.Text = "Mabdelbrot Set";
             this.linkLabelMandelbrot.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMandelbrot_LinkClicked);
             // 
+            // linkLabelHash
+            // 
+            this.linkLabelHash.AutoSize = true;
+            this.linkLabelHash.Font = new System.Drawing.Font("Monument Extended", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.linkLabelHash.Location = new System.Drawing.Point(39, 370);
+            this.linkLabelHash.Name = "linkLabelHash";
+            this.linkLabelHash.Size = new System.Drawing.Size(94, 25);
+            this.linkLabelHash.TabIndex = 0;
+            this.linkLabelHash.TabStop = true;
+            this.linkLabelHash.Text = "Hash";
+            this.linkLabelHash.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelHash_LinkClicked);
+            // 
             // Portal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 450);
             this.Controls.Add(this.linkLabelHooks);
+            this.Controls.Add(this.linkLabelHash);
             this.Controls.Add(this.linkLabelMandelbrot);
             this.Controls.Add(this.linkLabelChipher);
             this.Controls.Add(this.linkLabelMVPatterns);
@@ -197,5 +211,6 @@
         private System.Windows.Forms.LinkLabel linkLabelHooks;
         private System.Windows.Forms.LinkLabel linkLabelChipher;
         private System.Windows.Forms.LinkLabel linkLabelMandelbrot;
+        private System.Windows.Forms.LinkLabel linkLabelHash;
     }
 }

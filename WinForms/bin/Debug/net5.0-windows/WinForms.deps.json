@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v5.0": {
       "WinForms/1.0.0": {
         "dependencies": {
+          "Hasher": "1.0.0",
           "NLog": "4.7.15",
           "SixLabors.ImageSharp": "2.1.1",
           "Unity.NetCore": "4.0.3"
@@ -69,6 +70,11 @@
             "fileVersion": "4.0.0.0"
           }
         }
+      },
+      "Hasher/1.0.0": {
+        "runtime": {
+          "Hasher.dll": {}
+        }
       }
     }
   },
@@ -126,6 +132,11 @@
       "sha512": "sha512-Se1z5U72aUzd5CklbtYD30iPB1D5zoe1X9MVgmyczwGgR//SEcfoT2BIlOzc0zpHB6nMIH3RvBULcpAza377nA==",
       "path": "unity.netcore/4.0.3",
       "hashPath": "unity.netcore.4.0.3.nupkg.sha512"
+    },
+    "Hasher/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

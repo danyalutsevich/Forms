@@ -74,5 +74,12 @@ namespace WinForms.Forms
             Program.Container.Resolve<Forms.MandelbrotSetForm>().ShowDialog();
             this.Show();
         }
+
+        private void linkLabelHash_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            Program.Container.Resolve<Forms.HashForm>().ShowDialog();
+            this.Show();
+        }
     }
 }

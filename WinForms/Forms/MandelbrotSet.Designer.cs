@@ -47,7 +47,6 @@
             this.pictureBoxFractal.Size = new System.Drawing.Size(484, 460);
             this.pictureBoxFractal.TabIndex = 0;
             this.pictureBoxFractal.TabStop = false;
-            this.pictureBoxFractal.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBoxFractal.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxFractal_MouseDown);
             this.pictureBoxFractal.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxFractal_MouseMove);
             // 

@@ -84,6 +84,16 @@
           "lib/netstandard2.0/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
           "lib/netstandard2.0/Microsoft.Practices.Unity.dll": {}
         }
+      },
+      "Hasher/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Hasher.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Hasher.dll": {}
+        }
       }
     }
   },
@@ -263,10 +273,16 @@
         "unity.netcore.4.0.3.nupkg.sha512",
         "unity.netcore.nuspec"
       ]
+    },
+    "Hasher/1.0.0": {
+      "type": "project",
+      "path": "../Hasher/Hasher.csproj",
+      "msbuildProject": "../Hasher/Hasher.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
+      "Hasher >= 1.0.0",
       "NLog >= 4.7.15",
       "SixLabors.ImageSharp >= 2.1.1",
       "Unity.NetCore >= 4.0.3"
@@ -298,7 +314,11 @@
       "frameworks": {
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\luche\\source\\repos\\C#\\WinForms\\Hasher\\Hasher.csproj": {
+              "projectPath": "C:\\Users\\luche\\source\\repos\\C#\\WinForms\\Hasher\\Hasher.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
